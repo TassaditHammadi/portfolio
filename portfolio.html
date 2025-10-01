@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Tassadit Hammadi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Poppins',sans-serif;
+      background:linear-gradient(135deg,#0a0a0a,#1a1a1a);
+      color:#f5f5f5;overflow-x:hidden;}
+    a{text-decoration:none;}
+    header{position:fixed;top:0;left:0;width:100%;background:#111;backdrop-filter:blur(8px);
+      display:flex;justify-content:space-between;align-items:center;padding:15px 50px;z-index:1000;
+      box-shadow:0 2px 10px rgba(0,0,0,0.5);}
+    header h1{color:#00e5ff;font-size:24px;font-weight:900;}
+    nav a{margin:0 15px;text-decoration:none;color:#ddd;font-weight:500;position:relative;}
+    nav a::after{content:"";position:absolute;bottom:-5px;left:0;width:0;height:2px;background:#00e5ff;transition:.3s;}
+    nav a:hover::after{width:100%;}
+    .btn-cv{padding:8px 16px;border:none;border-radius:20px;background:#00e5ff;color:black;font-weight:bold;cursor:pointer;}
+    section{padding:120px 10%;min-height:100vh;position:relative;overflow:hidden;}
+    h2.section-title{text-align:center;margin-bottom:60px;font-size:36px;font-weight:900;color:#00e5ff;}
+
+    /* HOME */
+    #home{text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:25px;position:relative;z-index:2;}
+    .icon-container{font-size:120px;color:#00e5ff;
+      animation:glow 2s infinite alternate, float 4s ease-in-out infinite;}
+    @keyframes glow{from{text-shadow:0 0 10px #00e5ff,0 0 20px #00e5ff;}to{text-shadow:0 0 25px #00e5ff,0 0 50px #00e5ff;}}
+    @keyframes float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-15px) rotate(3deg);}}
+    #home h2{font-size:46px;font-weight:900;margin-bottom:10px;background:linear-gradient(90deg,#00e5ff,#00bcd4);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    #typed-text{font-size:26px;color:#bbb;min-height:30px;font-weight:500;}
+    .cta{margin-top:20px;padding:14px 35px;border:none;border-radius:30px;
+      background:#00e5ff;color:black;font-weight:700;cursor:pointer;
+      transition:transform .2s,box-shadow .3s;}
+    .cta:hover{transform:scale(1.1);box-shadow:0 0 20px #00e5ff;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+
+    /* Code flottant */
+    .floating-code {
+      position:absolute;
+      bottom:-50px;
+      font-family:monospace;
+      font-size:15px;
+      color:#00e5ff;
+      text-shadow:0 0 10px #00e5ff,0 0 20px #00e5ff;
+      opacity:0;
+      white-space:nowrap;
+      pointer-events:none;
+      z-index:1;
+      animation: floatUp 12s linear infinite;
+    }
+    @keyframes floatUp {
+      0% {transform:translateY(0) translateX(0);opacity:0;}
+      10% {opacity:1;}
+      90% {opacity:1;}
+      100% {transform:translateY(-800px) translateX(var(--xMove));opacity:0;}
+    }
+
+    /* PROJETS */
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:60px;justify-items:center;}
+    .project-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px;}
+    .project-circle{width:350px;height:350px;border-radius:50%;overflow:hidden;position:relative;
+      border:10px solid transparent;background:conic-gradient(#00e5ff 20%,transparent 80%);animation:rotate 6s linear infinite;}
+    @keyframes rotate{100%{transform:rotate(360deg);}}
+    .project-circle img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:8px solid #0a0a0a;}
+    .project-title{font-size:24px;font-weight:900;color:#00e5ff;letter-spacing:1px;text-shadow:0 0 15px #00e5ff;}
+    .project-btn{padding:12px 24px;border:none;border-radius:25px;background:#00e5ff;color:#111;font-weight:700;cursor:pointer;transition:.3s;}
+    .project-btn:hover{transform:scale(1.1);box-shadow:0 0 15px #00e5ff;}
+
+    /* MODAL */
+    .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);
+      display:flex;justify-content:center;align-items:center;opacity:0;pointer-events:none;transition:.5s;z-index:2000;}
+    .modal.active{opacity:1;pointer-events:all;}
+    .modal-content{background:#111;padding:40px;border-radius:15px;max-width:800px;width:90%;color:#eee;
+      transform:translateY(-100vh);animation:drop 0.7s forwards;border:2px solid #00e5ff;box-shadow:0 0 25px #00e5ff;}
+    @keyframes drop{to{transform:translateY(0);}}
+    .modal h3{color:#00e5ff;margin-bottom:20px;font-size:24px;}
+    .modal p{margin-bottom:10px;line-height:1.6;}
+    .modal ul{margin-left:20px;margin-top:10px;}
+    .modal li{margin-bottom:8px;}
+    .close-btn{margin-top:20px;padding:10px 20px;background:#00e5ff;color:#111;border:none;border-radius:20px;cursor:pointer;font-weight:bold;}
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <h1>Tassadit Hammadi</h1>
+    <nav>
+      <a href="#home">Accueil</a>
+      <a href="#projects">Projets</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="btn-cv">📄 CV</button>
+  </header>
+
+  <!-- HOME -->
+  <section id="home">
+    <div class="icon-container"><i class="fas fa-laptop-code"></i></div>
+    <h2>Bienvenue dans mon <span>univers numérique</span></h2>
+    <div id="typed-text"></div>
+    <button class="cta" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Voir mes projets ↓</button>
+
+    <!-- Lignes de code flottantes variées (TOUTES gardées) -->
+    <div class="floating-code" style="left:20%; --xMove:-100px; animation-delay:0s;">const name = "Tassadit";</div>
+    <div class="floating-code" style="left:40%; --xMove:60px; animation-delay:1s;">print("Bonjour le monde")</div>
+    <div class="floating-code" style="left:70%; --xMove:-80px; animation-delay:2s;">&lt;h1&gt;Portfolio Tassadit&lt;/h1&gt;</div>
+    <div class="floating-code" style="left:30%; --xMove:90px; animation-delay:3s;">function passion(){ return "Tech & IA"; }</div>
+    <div class="floating-code" style="left:55%; --xMove:-70px; animation-delay:4s;">.developer { creativity: 100%; }</div>
+    <div class="floating-code" style="left:65%; --xMove:50px; animation-delay:5s;"># Python: self.innovate()</div>
+    <div class="floating-code" style="left:25%; --xMove:-120px; animation-delay:6s;">System.out.println("Hello Tassadit");</div>
+    <div class="floating-code" style="left:75%; --xMove:80px; animation-delay:7s;">SELECT * FROM projets WHERE auteur="Tassadit";</div>
+    <div class="floating-code" style="left:50%; --xMove:100px; animation-delay:9s;">echo "Bienvenue dans l’univers numérique"</div>
+    <div class="floating-code" style="left:60%; --xMove:-90px; animation-delay:10s;">// JavaScript: let skills = ["React","Django","IA"];</div>
+    <div class="floating-code" style="left:80%; --xMove:-100px; animation-delay:12s;">public class Tassadit { }</div>
+    <div class="floating-code" style="left:38%; --xMove:60px; animation-delay:13s;">/* CSS : color: #00e5ff; */</div>
+    <div class="floating-code" style="left:68%; --xMove:-110px; animation-delay:14s;">💡 Code + Créativité = Tassadit</div>
+  </section>
+
+  <!-- PROJETS -->
+  <section id="projects">
+    <h2 class="section-title">Mes Projets</h2>
+    <div class="projects-grid">
+      <!-- Projet 1 -->
+      <div class="project-card">
+        <div class="project-circle">
+          <img src="etheria.png" alt="Projet Éthéria">
+        </div>
+        <div class="project-title">Application web - Éthéria</div>
+        <button class="project-btn" onclick="openModal()">Voir description</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL DESCRIPTION -->
+  <div class="modal" id="projectModal">
+    <div class="modal-content">
+      <h3>Application web pour une agence de voyage - Éthéria</h3>
+      <p><strong>Période :</strong> Juin 2025 - Août 2025</p>
+      <p>Conception et développement d’une application complète de réservation de vols et de logements avec gestion des comptes utilisateurs et paiements en ligne.</p>
+      <ul>
+        <li><b>Frontend :</b> React, TypeScript, Redux Toolkit, Apollo Client, Tailwind CSS</li>
+        <li><b>Backend :</b> Django (Python) + GraphQL (Graphene), JWT sécurisé</li>
+        <li><b>APIs :</b> DummyJSON (utilisateurs) & TravelPayouts (vols & hôtels)</li>
+        <li><b>Paiement :</b> Stripe (transactions & factures)</li>
+        <li><b>Déploiement :</b> Vercel (Frontend), Render (Backend), GitHub</li>
+      </ul>
+      <button class="close-btn" onclick="closeModal()">Fermer</button>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+  </section>
+
+  <footer><p>© 2025 Tassadit Hammadi · Portfolio</p></footer>
+
+  <script>
+    const text=["Exploratrice du code","Développeuse Web","UI/UX Designer","Passionnée de Tech","Innovatrice en IA"];
+    let index=0,char=0,isDeleting=false;
+    function type(){
+      let current=text[index];
+      document.getElementById("typed-text").innerHTML=current.substring(0,char)+"|";
+      if(!isDeleting && char<current.length){char++;}
+      else if(isDeleting && char>0){char--;}
+      else if(!isDeleting && char===current.length){isDeleting=true;setTimeout(type,1200);return;}
+      else if(isDeleting && char===0){isDeleting=false;index=(index+1)%text.length;}
+      setTimeout(type,isDeleting?50:120);
+    } 
+    type();
+
+    function openModal(){document.getElementById("projectModal").classList.add("active");}
+    function closeModal(){document.getElementById("projectModal").classList.remove("active");}
+  </script>
+</body>
+</html>
+
+
