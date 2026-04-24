@@ -1,1619 +1,1165 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
- 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Portfolio - Tassadit Hammadi</title>
-
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet" />
+  <title>Portfolio – Tassadit Hammadi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-
   <style>
-    /* =========================================================
-       ============== RESET & THEME VARIABLES ==================
-       ========================================================= */
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    *{margin:0;padding:0;box-sizing:border-box;}
     :root{
-      --bg-1:#0a0a0a;
-      --bg-2:#1a1a1a;
-
-      --ink:#f5f5f5;
-      --muted:#bbb;
-      --dim:#ddd;
-
+      --bg-1:#0a0a0a;--bg-2:#1a1a1a;
+      --ink:#f5f5f5;--muted:#bbb;--dim:#ddd;
       --turq:#00e5ff;
-      --turq-10:rgba(0,229,255,.10);
-      --turq-15:rgba(0,229,255,.15);
-      --turq-20:rgba(0,229,255,.20);
-      --turq-25:rgba(0,229,255,.25);
-      --turq-30:rgba(0,229,255,.30);
-      --turq-40:rgba(0,229,255,.40);
+      --turq-10:rgba(0,229,255,.10);--turq-15:rgba(0,229,255,.15);
+      --turq-20:rgba(0,229,255,.20);--turq-25:rgba(0,229,255,.25);
+      --turq-30:rgba(0,229,255,.30);--turq-40:rgba(0,229,255,.40);
       --turq-60:rgba(0,229,255,.60);
-
-      --card:#111;
-      --ring:rgba(0,0,0,.6);
-      --shadow:rgba(0,0,0,.5);
-
-      --radius:20px;
-      --radius-lg:26px;
-
-      --gap:40px;
-      --pad:30px;
-
-      --glow-size: 120px;
-    }
-
-    html,
-    body{
-      scroll-behavior: smooth;
-    }
-
-    body{
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
-      color: var(--ink);
-      overflow-x: hidden;
-    }
-
-    a{
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* =========================================================
-       ======================= HEADER ==========================
-       ========================================================= */
-
-    header{
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-
-      background: #111;
-      backdrop-filter: blur(8px);
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      padding: 15px 50px;
-      z-index: 1000;
-
-      box-shadow: 0 2px 10px var(--shadow);
-    }
-
-    header h1{
-      color: var(--turq);
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: .5px;
-      text-shadow: 0 0 16px var(--turq-20);
-    }
-
-    nav a{
-      margin: 0 15px;
-      color: #ddd;
-      font-weight: 500;
-      position: relative;
-      display: inline-block;
-      padding: 6px 2px;
-    }
-
-    nav a::after{
-      content: "";
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--turq);
-      transition: .3s;
-      box-shadow: 0 0 10px var(--turq-30);
-    }
-
-    nav a:hover::after{
-      width: 100%;
-    }
-
-    .btn-cv{
-      padding: 8px 16px;
-      border: none;
-      border-radius: 20px;
-      background: var(--turq);
-      color: black;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 0 0 var(--turq-20);
-      transition: transform .2s, box-shadow .3s;
-    }
-
-    .btn-cv:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px var(--turq-30);
-    }
-
-    /* =========================================================
-       ======================= SECTIONS ========================
-       ========================================================= */
-
-    section{
-      padding: 120px 10%;
-      min-height: 100vh;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* anneaux "shining" décoratifs (génériques, réutilisés) */
-    .shine-ring{
-      position: absolute;
-      width: 420px;
-      height: 420px;
-      border-radius: 50%;
-      border: 1px dashed var(--turq-20);
-      box-shadow: 0 0 60px var(--turq-15), inset 0 0 40px var(--turq-10);
-      filter: blur(.2px);
-      animation: ringRotate 18s linear infinite;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .shine-ring.r2{
-      width: 520px;
-      height: 520px;
-      left: -140px;
-      top: -120px;
-      animation-duration: 24s;
-      animation-direction: reverse;
-    }
-
-    .shine-ring.r3{
-      width: 280px;
-      height: 280px;
-      right: -120px;
-      bottom: -100px;
-      animation-duration: 22s;
-    }
-
-    @keyframes ringRotate{
-      0%   { transform: rotate(0deg)  scale(1); }
-      50%  { transform: rotate(180deg) scale(1.05); }
-      100% { transform: rotate(360deg) scale(1); }
-    }
-
-    h2.section-title{
-      text-align: center;
-      margin-bottom: 60px;
-      font-size: 36px;
-      font-weight: 900;
-      color: var(--turq);
-      text-shadow: 0 0 20px var(--turq-20);
-      letter-spacing: .6px;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* effet reveal on scroll */
-    .reveal{
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity .8s ease, transform .8s ease;
-    }
-    .reveal.visible{
-      opacity: 1;
-      transform: translateY(0px);
-    }
-
-    /* =========================================================
-       ========================= HOME ==========================
-       ========================================================= */
-
-    #home{
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 25px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .icon-container{
-      font-size: 120px;
-      color: var(--turq);
-      animation: glow 2s infinite alternate, float 4s ease-in-out infinite;
-      filter: drop-shadow(0 0 18px var(--turq-20));
-    }
-
-    @keyframes glow{
-      from { text-shadow: 0 0 10px var(--turq), 0 0 20px var(--turq); }
-      to   { text-shadow: 0 0 25px var(--turq), 0 0 50px var(--turq); }
-    }
-
-    @keyframes float{
-      0%,100%{ transform: translateY(0) rotate(0deg); }
-      50%    { transform: translateY(-15px) rotate(3deg); }
-    }
-
-    #home h2{
-      font-size: 46px;
-      font-weight: 900;
-      margin-bottom: 10px;
-      background: linear-gradient(90deg, var(--turq), #00bcd4);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    #typed-text{
-      font-size: 26px;
-      color: var(--muted);
-      min-height: 30px;
-      font-weight: 500;
-      letter-spacing: .3px;
-    }
-
-    .cta{
-      margin-top: 20px;
-      padding: 14px 35px;
-      border: none;
-      border-radius: 30px;
-      background: var(--turq);
-      color: black;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform .2s, box-shadow .3s;
-    }
-
-    .cta:hover{
-      transform: scale(1.1);
-      box-shadow: 0 0 20px var(--turq);
-    }
-
-    /* =========================================================
-       ===================== Code flottant =====================
-       ========================================================= */
-
-    .floating-code{
-      position: absolute;
-      bottom: -50px;
-      font-family: monospace;
-      font-size: 15px;
-      color: var(--turq);
-      text-shadow: 0 0 10px var(--turq), 0 0 20px var(--turq);
-      opacity: 0;
-      white-space: nowrap;
-      pointer-events: none;
-      z-index: 1;
-      animation: floatUp 12s linear infinite;
-    }
-
-    @keyframes floatUp{
-      0%   { transform: translateY(0) translateX(0); opacity: 0; }
-      10%  { opacity: 1; }
-      90%  { opacity: 1; }
-      100% { transform: translateY(-800px) translateX(var(--xMove)); opacity: 0; }
-    }
-
-    /* =========================================================
-       ================== Timeline parcours ====================
-       ========================================================= */
-
-    .timeline{
-      position: relative;
-      margin: 0 auto;
-      max-width: 800px;
-    }
-
-    .timeline::after{
-      content: "";
-      position: absolute;
-      width: 4px;
-      background: var(--turq);
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      margin-left: -2px;
-      box-shadow: 0 0 14px var(--turq-30);
-    }
-
-    .timeline-item{
-      padding: 20px 40px;
-      position: relative;
-      background: inherit;
-      width: 50%;
-    }
-
-    .timeline-item::after{
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      right: -10px;
-      background: var(--turq);
-      border: 4px solid #111;
-      top: 30px;
-      border-radius: 50%;
-      z-index: 1;
-      box-shadow: 0 0 15px var(--turq);
-    }
-
-    .left{ left: 0; }
-    .right{ left: 50%; }
-    .right::after{ left: -10px; }
-
-    .timeline-content{
-      padding: 20px;
-      background: #111;
-      border-radius: 10px;
-      border: 2px solid var(--turq);
-      box-shadow: 0 0 20px var(--turq);
-      transition: transform .3s;
-    }
-
-    .timeline-content:hover{
-      transform: scale(1.05);
-    }
-
-    .timeline h3{
-      color: var(--turq);
-      margin-bottom: 10px;
-      font-size: 22px;
-    }
-
-    .timeline p{
-      color: #ddd;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    @media (max-width: 768px){
-      .timeline::after{ left: 31px; }
-      .timeline-item{ width: 100%; padding-left: 70px; padding-right: 25px; }
-      .timeline-item::after{ left: 15px; }
-      .right{ left: 0; }
-    }
-
-    /* =========================================================
-       ==================== EXPERIENCE WOW =====================
-       ========================================================= */
-
-    .experience-grid{
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: var(--gap);
-      margin-top: 50px;
-    }
-
-    .experience-card{
-      background: rgba(17, 17, 17, 0.7);
-      border: 2px solid var(--turq-40);
-      border-radius: var(--radius);
-      padding: var(--pad);
-      text-align: center;
-      color: var(--ink);
-      box-shadow: 0 0 30px rgba(0,229,255,0.15);
-      backdrop-filter: blur(12px);
-      transition: transform .3s, box-shadow .3s;
-      transform-style: preserve-3d;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .experience-card::before{
-      /* léger halo "shining" */
-      content:"";
-      position:absolute;
-      inset:-30%;
-      background: radial-gradient(circle at 30% 20%, var(--turq-15), transparent 55%);
-      opacity:.65;
-      pointer-events:none;
-      transform: translateZ(15px);
-      filter: blur(10px);
-    }
-
-    .experience-card:hover{
-      transform: translateY(-15px) scale(1.03);
-      box-shadow: 0 0 40px var(--turq);
-    }
-
-    .icon-exp{
-      font-size: 50px;
-      color: var(--turq);
-      margin-bottom: 20px;
-      animation: pulse 2s infinite;
-      filter: drop-shadow(0 0 10px var(--turq-30));
-    }
-
-    .experience-card h3{
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: var(--turq);
-    }
-
-    .experience-card h4{
-      font-size: 16px;
-      color: #bbb;
-      margin-bottom: 15px;
-    }
-
-    .experience-card p{
-      font-size: 15px;
-      line-height: 1.6;
-      color: #ddd;
-    }
-
-    @keyframes pulse{
-      0%,100%{ transform: scale(1); text-shadow: 0 0 10px var(--turq); }
-      50%    { transform: scale(1.1); text-shadow: 0 0 20px var(--turq); }
-    }
-
-    #skills{ isolation:isolate; }
-
-    .skills-note{
-      text-align: center;
-      color: var(--dim);
-      margin-top: -30px;
-      margin-bottom: 30px;
-      font-size: 14px;
-      opacity: .9;
-    }
-
-    .skills-grid{
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 22px;
-      perspective: 1200px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .skill-card{
-      grid-column: span 4;
-      min-height: 220px;
-      position: relative;
-
-      background: linear-gradient(to bottom right, rgba(17,17,17,.85), rgba(17,17,17,.6));
-      border: 1.5px solid var(--turq-30);
-      border-radius: 18px;
-      padding: 22px;
-
-      box-shadow: 0 10px 30px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.02);
-      transform-style: preserve-3d;
-      transform: rotateX(0deg) rotateY(0deg);
-      transition: transform .15s ease-out, box-shadow .2s ease-out, border-color .2s ease-out;
-      overflow: hidden;
-    }
-
-    .skill-card:hover{
-      border-color: var(--turq);
-      box-shadow: 0 16px 40px rgba(0,229,255,.25), 0 0 0 1px var(--turq-20) inset;
-    }
-
-    .skill-glow{
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient( circle at var(--mx,50%) var(--my,50%), rgba(0,229,255,.18), transparent 45%);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity .25s;
-    }
-
-    .skill-card:hover .skill-glow{ opacity: 1; }
-
-    .skill-header{
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-      transform: translateZ(35px);
-    }
-
-    .skill-icon{
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      background: rgba(0,229,255,.08);
-      border: 1px solid var(--turq-20);
-      box-shadow: inset 0 0 20px rgba(0,229,255,.12), 0 0 20px rgba(0,229,255,.12);
-      color: var(--turq);
-      font-size: 20px;
-    }
-
-    .skill-title{
-      font-weight: 800;
-      color: var(--turq);
-      letter-spacing: .4px;
-    }
-
-    .skill-sub{
-      font-size: 12px;
-      color: var(--muted);
-      margin-left: auto;
-      opacity: .9;
-    }
-
-    .skill-body{ transform: translateZ(25px); }
-
-    .tag-list{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-    }
-
-    .tag{
-      font-size: 12px;
-      color: #e9feff;
-      border: 1px solid rgba(0,229,255,.35);
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(0,229,255,.06);
-      box-shadow: 0 0 10px rgba(0,229,255,.12) inset;
-    }
-
-    .skill-points{
-      margin-top: 10px;
-      margin-left: 18px;
-    }
-
-    .skill-points li{
-      color: #ddd;
-      line-height: 1.55;
-      margin: 4px 0;
-    }
-
-    @media (max-width: 1100px){
-      .skill-card{ grid-column: span 6; }
-    }
-
-    @media (max-width: 720px){
-      .skill-card{ grid-column: span 12; }
-    }
-
-    .projects-wrapper{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 50px;
-      margin-top: 40px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .project-circle{
-      position: relative;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: rgba(17,17,17,0.86);
-      box-shadow: 0 0 25px var(--turq-40);
-      overflow: hidden;
-      border: 1px solid var(--turq-20);
-    }
-
-    .circle-border{
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border: 3px solid transparent;
-      border-top: 3px solid var(--turq);
-      border-radius: 50%;
-      animation: spin 4s linear infinite;
-      filter: drop-shadow(0 0 10px var(--turq-30));
-    }
-
-    @keyframes spin{
-      100% { transform: rotate(360deg); }
-    }
-
-    .project-content{
-      position: relative;
-      text-align: center;
-      z-index: 2;
-      transform-style: preserve-3d;
-    }
-
-    .project-content i{
-      font-size: 60px;
-      color: var(--turq);
-      margin-bottom: 15px;
-      filter: drop-shadow(0 0 10px var(--turq-30));
-      transform: translateZ(30px);
-    }
-
-    .project-content h3{
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 15px;
-      transform: translateZ(18px);
-    }
-
-    .project-btn{
-      padding: 8px 16px;
-      border: none;
-      border-radius: 20px;
-      background: var(--turq);
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform .2s, box-shadow .3s;
-      transform: translateZ(16px);
-    }
-
-    .project-btn:hover{
-      transform: translateZ(16px) scale(1.1);
-      box-shadow: 0 0 15px var(--turq);
-    }
-
-    .project-nav{
-      font-size: 40px;
-      color: var(--turq);
-      cursor: pointer;
-      user-select: none;
-      transition: transform .2s;
-      text-shadow: 0 0 12px var(--turq-30);
-    }
-
-    .project-nav:hover{
-      transform: scale(1.2);
-    }
-
- 
-    .modal{
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0,0,0,0.6);
-      z-index: 2000;
-      padding: 20px;
-    }
-
-    .modal.active{ display: flex; }
-
-    .modal-content{
-      width: min(760px,95vw);
-      max-height: 80vh;
-      overflow: auto;
-      background: #111;
-      border: 1.5px solid var(--turq);
-      border-radius: 16px;
-      box-shadow: 0 0 25px var(--turq-30);
-      padding: 24px 22px;
-    }
-
-    .modal-content h3{
-      margin-bottom: 12px;
-      color: var(--turq);
-      font-size: 22px;
-    }
-
-    .modal-content ul{
-      margin: 10px 0 0 18px;
-    }
-
-    .modal-content li{
-      margin: 6px 0;
-      line-height: 1.5;
-      color: #ddd;
-    }
-
-    .close-btn{
-      margin-top: 16px;
-      background: var(--turq);
-      border: none;
-      border-radius: 20px;
-      padding: 8px 16px;
-      font-weight: 700;
-      cursor: pointer;
-      color: #000;
-    }
-
-    /* =========================================================
-       =============== LANGUES PARLÉES (NOUVEAU) ===============
-       ========================================================= */
-
-    #languages{
-      position: relative;
-      z-index: 1;
-    }
-
-    .lang-grid{
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 22px;
-      perspective: 1100px;
-      margin-top: 10px;
-    }
-
-    .lang-card{
-      grid-column: span 3;
-      min-height: 200px;
-      background: linear-gradient(180deg, rgba(17,17,17,.92), rgba(17,17,17,.75));
-      border: 1.5px solid var(--turq-30);
-      border-radius: 18px;
-      padding: 22px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.02);
-      transform-style: preserve-3d;
-      transform: rotateX(0) rotateY(0);
-      transition: transform .15s ease-out, box-shadow .25s ease-out, border-color .25s ease-out;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .lang-card:hover{
-      border-color: var(--turq);
-      box-shadow: 0 16px 40px rgba(0,229,255,.25), 0 0 0 1px var(--turq-20) inset;
-    }
-
-    .lang-glow{
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(0,229,255,.16), transparent 45%);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity .25s;
-    }
-
-    .lang-card:hover .lang-glow{ opacity: 1; }
-
-    .lang-flag{
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: rgba(0,229,255,.08);
-      border: 1px solid var(--turq-20);
-      box-shadow: inset 0 0 16px rgba(0,229,255,.12), 0 0 16px rgba(0,229,255,.12);
-      color: var(--turq);
-      font-size: 24px;
-      margin-bottom: 12px;
-      transform: translateZ(30px);
-    }
-
-    .lang-name{
-      font-weight: 800;
-      color: var(--turq);
-      letter-spacing: .4px;
-      transform: translateZ(26px);
-    }
-
-    .lang-level{
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 3px;
-      transform: translateZ(22px);
-    }
-
-    .lang-stars{
-      display: flex;
-      gap: 6px;
-      margin-top: 10px;
-      transform: translateZ(20px);
-    }
-
-    .lang-stars i{
-      color: var(--turq);
-      text-shadow: 0 0 10px var(--turq-20);
-      font-size: 16px;
-    }
-
-    @media (max-width: 1100px){
-      .lang-card{ grid-column: span 6; }
-    }
-
-    @media (max-width: 720px){
-      .lang-card{ grid-column: span 12; }
-    }
-
-    /* =========================================================
-       =================== CONTACT / FOOTER ====================
-       ========================================================= */
-
-    #contact .contact-wrapper{
-      max-width: 980px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 22px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .contact-card{
-      grid-column: span 12;
-      background: rgba(17,17,17,0.75);
-      border: 1.5px solid var(--turq-30);
-      border-radius: 18px;
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.02);
-    }
-
-    .contact-card p{
-      color: #dfeff2;
-      line-height: 1.75;
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-
-    .contact-actions{
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
-
-    .contact-btn{
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      border-radius: 12px;
-      border: 1px solid var(--turq-25);
-      background: rgba(0,229,255,.06);
-      color: #e9feff;
-      font-weight: 700;
-      transition: transform .2s, box-shadow .2s, border-color .2s, background .2s;
-    }
-
-    .contact-btn i{
-      color: var(--turq);
-      text-shadow: 0 0 10px var(--turq-20);
-    }
-
-    .contact-btn:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 10px 16px rgba(0,229,255,.12);
-      border-color: var(--turq);
-      background: rgba(0,229,255,.12);
-    }
-
-    footer{
-      padding: 18px 10%;
-      text-align: center;
-      color: #9ddbe1;
-      border-top: 1px dashed var(--turq-30);
-      position: relative;
-      z-index: 1;
+      --card:#111;--shadow:rgba(0,0,0,.5);
+      --radius:20px;--radius-lg:26px;
+      --gap:36px;--pad:28px;
+    }
+    html,body{scroll-behavior:smooth;}
+    body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--bg-1),var(--bg-2));color:var(--ink);overflow-x:hidden;}
+    a{text-decoration:none;color:inherit;}
+
+    /* ── SCROLL PROGRESS BAR ── */
+    #scroll-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--turq),#00bcd4);z-index:9999;box-shadow:0 0 10px var(--turq);transition:width .1s linear;}
+
+    /* ── HEADER ── */
+    header{position:fixed;top:3px;left:0;width:100%;background:#111;backdrop-filter:blur(8px);display:flex;justify-content:space-between;align-items:center;padding:14px 50px;z-index:1000;box-shadow:0 2px 10px var(--shadow);}
+    header h1{color:var(--turq);font-size:22px;font-weight:900;letter-spacing:.5px;text-shadow:0 0 16px var(--turq-20);}
+    nav{display:flex;align-items:center;gap:4px;}
+    nav a{margin:0 12px;color:#ddd;font-weight:500;position:relative;display:inline-block;padding:6px 2px;transition:color .3s;}
+    nav a::after{content:"";position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--turq);transition:.3s;box-shadow:0 0 10px var(--turq-30);}
+    nav a:hover::after,nav a.active::after{width:100%;}
+    nav a.active{color:var(--turq);}
+
+    /* ── LANG TOGGLE ── */
+    .lang-toggle{display:flex;align-items:center;gap:0;border:1.5px solid var(--turq-40);border-radius:20px;overflow:hidden;margin-left:14px;flex-shrink:0;}
+    .lang-btn{padding:5px 13px;background:transparent;border:none;color:#bbb;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s,color .2s;letter-spacing:.5px;}
+    .lang-btn.active{background:var(--turq);color:#000;}
+
+    .btn-cv{padding:8px 16px;border:none;border-radius:20px;background:var(--turq);color:black;font-weight:bold;cursor:pointer;transition:transform .2s,box-shadow .3s;font-family:'Poppins',sans-serif;font-size:13px;margin-left:10px;}
+    .btn-cv:hover{transform:translateY(-2px);box-shadow:0 0 20px var(--turq-30);}
+
+    /* ── SECTIONS ── */
+    section{padding:120px 10%;min-height:100vh;position:relative;overflow:hidden;}
+    .shine-ring{position:absolute;width:420px;height:420px;border-radius:50%;border:1px dashed var(--turq-20);box-shadow:0 0 60px var(--turq-15),inset 0 0 40px var(--turq-10);filter:blur(.2px);animation:ringRotate 18s linear infinite;pointer-events:none;z-index:0;}
+    .shine-ring.r2{width:520px;height:520px;left:-140px;top:-120px;animation-duration:24s;animation-direction:reverse;}
+    .shine-ring.r3{width:280px;height:280px;right:-120px;bottom:-100px;animation-duration:22s;}
+    @keyframes ringRotate{0%{transform:rotate(0deg) scale(1);}50%{transform:rotate(180deg) scale(1.05);}100%{transform:rotate(360deg) scale(1);}}
+    h2.section-title{text-align:center;margin-bottom:55px;font-size:34px;font-weight:900;color:var(--turq);text-shadow:0 0 20px var(--turq-20);letter-spacing:.6px;position:relative;z-index:2;}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+    /* ── HOME ── */
+    #home{text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:22px;position:relative;z-index:2;min-height:100vh;}
+    #particles-canvas{position:absolute;inset:0;z-index:0;pointer-events:none;}
+    .home-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:22px;}
+    .icon-container{font-size:110px;color:var(--turq);animation:glow 2s infinite alternate,float 4s ease-in-out infinite;filter:drop-shadow(0 0 18px var(--turq-20));}
+    @keyframes glow{from{text-shadow:0 0 10px var(--turq),0 0 20px var(--turq);}to{text-shadow:0 0 25px var(--turq),0 0 50px var(--turq);}}
+    @keyframes float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-15px) rotate(3deg);}}
+    #home h2{font-size:44px;font-weight:900;background:linear-gradient(90deg,var(--turq),#00bcd4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    #typed-text{font-size:24px;color:var(--muted);min-height:30px;font-weight:500;letter-spacing:.3px;}
+    .home-badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:5px;}
+    .home-badge{padding:5px 14px;border-radius:999px;border:1px solid var(--turq-30);background:var(--turq-10);font-size:12px;color:var(--turq);letter-spacing:.4px;}
+    .cta{margin-top:10px;padding:13px 32px;border:none;border-radius:30px;background:var(--turq);color:black;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .3s;font-family:'Poppins',sans-serif;}
+    .cta:hover{transform:scale(1.08);box-shadow:0 0 20px var(--turq);}
+    .floating-code{position:absolute;bottom:-50px;font-family:monospace;font-size:14px;color:var(--turq);text-shadow:0 0 10px var(--turq),0 0 20px var(--turq);opacity:0;white-space:nowrap;pointer-events:none;z-index:1;animation:floatUp 12s linear infinite;}
+    @keyframes floatUp{0%{transform:translateY(0) translateX(0);opacity:0;}10%{opacity:1;}90%{opacity:1;}100%{transform:translateY(-800px) translateX(var(--xMove));opacity:0;}}
+
+    /* ── STATS ── */
+    #stats{min-height:auto;padding:60px 10%;background:linear-gradient(180deg,rgba(0,229,255,.03),transparent);}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:900px;margin:0 auto;}
+    .stat-item{text-align:center;padding:30px 20px;border:1.5px solid var(--turq-20);border-radius:18px;background:rgba(17,17,17,.6);backdrop-filter:blur(8px);transition:transform .3s,box-shadow .3s;}
+    .stat-item:hover{transform:translateY(-6px);box-shadow:0 10px 30px var(--turq-20);}
+    .stat-number{display:block;font-size:48px;font-weight:900;color:var(--turq);text-shadow:0 0 20px var(--turq-20);line-height:1;}
+    .stat-suffix{font-size:32px;}
+    .stat-label{display:block;font-size:14px;color:var(--muted);margin-top:8px;font-weight:500;}
+    @media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+
+    /* ── TIMELINE ── */
+    .timeline{position:relative;margin:0 auto;max-width:800px;}
+    .timeline::after{content:"";position:absolute;width:4px;background:var(--turq);top:0;bottom:0;left:50%;margin-left:-2px;box-shadow:0 0 14px var(--turq-30);}
+    .timeline-item{padding:20px 40px;position:relative;background:inherit;width:50%;}
+    .timeline-item::after{content:"";position:absolute;width:20px;height:20px;right:-10px;background:var(--turq);border:4px solid #111;top:30px;border-radius:50%;z-index:1;box-shadow:0 0 15px var(--turq);}
+    .left{left:0;}.right{left:50%;}.right::after{left:-10px;}
+    .timeline-content{padding:20px;background:#111;border-radius:10px;border:2px solid var(--turq);box-shadow:0 0 20px var(--turq-20);transition:transform .3s,box-shadow .3s;}
+    .timeline-content:hover{transform:scale(1.04);box-shadow:0 0 30px var(--turq-40);}
+    .timeline h3{color:var(--turq);margin-bottom:8px;font-size:20px;}
+    .timeline p{color:#ddd;font-size:15px;line-height:1.6;}
+    @media(max-width:768px){.timeline::after{left:31px;}.timeline-item{width:100%;padding-left:70px;padding-right:25px;}.timeline-item::after{left:15px;}.right{left:0;}}
+
+    /* ── EXPERIENCE ── */
+    .experience-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--gap);margin-top:40px;}
+    .experience-card{background:rgba(17,17,17,.7);border:2px solid var(--turq-40);border-radius:var(--radius);padding:var(--pad);text-align:center;box-shadow:0 0 30px rgba(0,229,255,.12);backdrop-filter:blur(12px);transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden;}
+    .experience-card.featured{border-color:var(--turq);box-shadow:0 0 40px var(--turq-20);}
+    .experience-card.featured::before{content:"";position:absolute;inset:0;border-radius:var(--radius);background:linear-gradient(135deg,var(--turq-10),transparent 60%);pointer-events:none;}
+    .exp-badge{display:inline-block;padding:3px 12px;border-radius:999px;background:var(--turq);color:#000;font-size:11px;font-weight:700;margin-bottom:12px;letter-spacing:.5px;}
+    .experience-card:hover{transform:translateY(-14px) scale(1.02);box-shadow:0 0 50px var(--turq-30);}
+    .icon-exp{font-size:48px;color:var(--turq);margin-bottom:18px;animation:pulse 2s infinite;filter:drop-shadow(0 0 10px var(--turq-30));}
+    .experience-card h3{font-size:20px;font-weight:700;margin-bottom:8px;color:var(--turq);}
+    .experience-card h4{font-size:15px;color:#bbb;margin-bottom:12px;}
+    .experience-card .exp-period{font-size:12px;color:var(--turq-60);margin-bottom:12px;letter-spacing:.3px;}
+    .experience-card p{font-size:14px;line-height:1.6;color:#ddd;}
+    .exp-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:14px;}
+    .exp-tag{font-size:11px;padding:3px 10px;border-radius:999px;border:1px solid var(--turq-30);background:var(--turq-10);color:#e9feff;}
+    @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+
+    /* ── SKILLS ── */
+    #skills{isolation:isolate;}
+    .skills-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;perspective:1200px;position:relative;z-index:2;}
+    .skill-card{grid-column:span 4;min-height:210px;position:relative;background:linear-gradient(to bottom right,rgba(17,17,17,.85),rgba(17,17,17,.6));border:1.5px solid var(--turq-30);border-radius:18px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.45);transform-style:preserve-3d;transition:transform .15s ease-out,box-shadow .2s,border-color .2s;overflow:hidden;}
+    .skill-card:hover{border-color:var(--turq);box-shadow:0 16px 40px rgba(0,229,255,.25);}
+    .skill-glow{position:absolute;inset:-40%;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(0,229,255,.18),transparent 45%);pointer-events:none;opacity:0;transition:opacity .25s;}
+    .skill-card:hover .skill-glow{opacity:1;}
+    .skill-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;transform:translateZ(35px);}
+    .skill-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(0,229,255,.08);border:1px solid var(--turq-20);box-shadow:inset 0 0 20px rgba(0,229,255,.12);color:var(--turq);font-size:19px;}
+    .skill-title{font-weight:800;color:var(--turq);letter-spacing:.4px;font-size:15px;}
+    .skill-sub{font-size:11px;color:var(--muted);margin-left:auto;opacity:.9;}
+    .skill-body{transform:translateZ(25px);}
+    .tag-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:7px;}
+    .tag{font-size:11px;color:#e9feff;border:1px solid rgba(0,229,255,.35);padding:5px 9px;border-radius:999px;background:rgba(0,229,255,.06);box-shadow:0 0 10px rgba(0,229,255,.12) inset;}
+    .skill-points{margin-top:9px;margin-left:16px;}
+    .skill-points li{color:#ddd;line-height:1.5;margin:3px 0;font-size:13px;}
+    .aws-tag{display:flex;align-items:center;gap:5px;}
+    .cert-badge{display:inline-block;background:linear-gradient(90deg,#ff9900,#ffb84d);color:#000;font-size:9px;font-weight:800;padding:2px 7px;border-radius:999px;letter-spacing:.4px;animation:badgePulse 2s ease-in-out infinite;}
+    @keyframes badgePulse{0%,100%{box-shadow:0 0 6px rgba(255,153,0,.4);}50%{box-shadow:0 0 14px rgba(255,153,0,.8);}}
+    @media(max-width:1100px){.skill-card{grid-column:span 6;}}
+    @media(max-width:720px){.skill-card{grid-column:span 12;}}
+
+    /* ── PROJECTS ── */
+    .projects-filter{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:35px;position:relative;z-index:2;}
+    .filter-btn{padding:6px 18px;border-radius:999px;border:1.5px solid var(--turq-30);background:transparent;color:#bbb;font-family:'Poppins',sans-serif;font-size:13px;cursor:pointer;transition:all .2s;}
+    .filter-btn.active,.filter-btn:hover{background:var(--turq);color:#000;border-color:var(--turq);}
+
+    .projects-carousel-wrapper{position:relative;z-index:2;overflow:hidden;}
+    .projects-track{display:flex;gap:24px;transition:transform .5s cubic-bezier(.4,0,.2,1);}
+    .project-card{flex:0 0 calc(33.333% - 16px);min-height:300px;background:rgba(17,17,17,.8);border:1.5px solid var(--turq-30);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 30px rgba(0,0,0,.4);backdrop-filter:blur(10px);transition:transform .3s,box-shadow .3s,border-color .3s;}
+    .project-card:hover{transform:translateY(-10px);box-shadow:0 20px 50px var(--turq-20);border-color:var(--turq);}
+    .project-card-icon{font-size:38px;color:var(--turq);filter:drop-shadow(0 0 10px var(--turq-30));}
+    .project-card h3{font-size:16px;font-weight:700;color:var(--ink);line-height:1.4;}
+    .project-card-tags{display:flex;flex-wrap:wrap;gap:5px;}
+    .project-card-tag{font-size:10px;padding:3px 9px;border-radius:999px;border:1px solid var(--turq-25);background:var(--turq-10);color:var(--turq);}
+    .project-card-btn{margin-top:auto;padding:8px 16px;border:none;border-radius:14px;background:var(--turq);color:#000;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;font-size:13px;transition:transform .2s,box-shadow .2s;align-self:flex-start;}
+    .project-card-btn:hover{transform:scale(1.06);box-shadow:0 0 15px var(--turq-40);}
+    .carousel-controls{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:28px;}
+    .carousel-btn{width:44px;height:44px;border-radius:50%;border:2px solid var(--turq-40);background:transparent;color:var(--turq);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+    .carousel-btn:hover{background:var(--turq);color:#000;border-color:var(--turq);}
+    .carousel-dots{display:flex;gap:8px;}
+    .carousel-dot{width:8px;height:8px;border-radius:50%;background:var(--turq-30);cursor:pointer;transition:all .2s;}
+    .carousel-dot.active{background:var(--turq);width:24px;border-radius:4px;}
+    @media(max-width:900px){.project-card{flex:0 0 calc(50% - 12px);}}
+    @media(max-width:600px){.project-card{flex:0 0 100%;}}
+
+    /* ── MODAL ── */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.7);z-index:2000;padding:20px;backdrop-filter:blur(4px);}
+    .modal.active{display:flex;}
+    .modal-content{width:min(760px,95vw);max-height:82vh;overflow:auto;background:#111;border:1.5px solid var(--turq);border-radius:18px;box-shadow:0 0 40px var(--turq-30);padding:28px;}
+    .modal-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:16px;}
+    .modal-icon{font-size:32px;color:var(--turq);}
+    .modal-content h3{color:var(--turq);font-size:22px;margin:0;}
+    .modal-content ul{margin:10px 0 0 18px;}
+    .modal-content li{margin:7px 0;line-height:1.55;color:#ddd;font-size:15px;}
+    .modal-tags{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0;}
+    .modal-close-btn{margin-top:18px;background:var(--turq);border:none;border-radius:20px;padding:9px 20px;font-weight:700;cursor:pointer;color:#000;font-family:'Poppins',sans-serif;}
+
+    /* ── LANGUAGES ── */
+    .lang-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:22px;perspective:1100px;margin-top:10px;}
+    .lang-card{grid-column:span 3;min-height:190px;background:linear-gradient(180deg,rgba(17,17,17,.92),rgba(17,17,17,.75));border:1.5px solid var(--turq-30);border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.45);transform-style:preserve-3d;transition:transform .15s ease-out,box-shadow .25s,border-color .25s;position:relative;overflow:hidden;}
+    .lang-card:hover{border-color:var(--turq);box-shadow:0 16px 40px rgba(0,229,255,.25);}
+    .lang-glow{position:absolute;inset:-40%;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(0,229,255,.16),transparent 45%);pointer-events:none;opacity:0;transition:opacity .25s;}
+    .lang-card:hover .lang-glow{opacity:1;}
+    .lang-flag{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:rgba(0,229,255,.08);border:1px solid var(--turq-20);color:var(--turq);font-size:24px;margin-bottom:12px;transform:translateZ(30px);}
+    .lang-name{font-weight:800;color:var(--turq);letter-spacing:.4px;transform:translateZ(26px);}
+    .lang-level{font-size:13px;color:var(--muted);margin-top:3px;transform:translateZ(22px);}
+    .lang-stars{display:flex;gap:5px;margin-top:10px;transform:translateZ(20px);}
+    .lang-stars i{color:var(--turq);text-shadow:0 0 10px var(--turq-20);font-size:15px;}
+    @media(max-width:1100px){.lang-card{grid-column:span 6;}}
+    @media(max-width:720px){.lang-card{grid-column:span 12;}}
+
+    /* ── CONTACT ── */
+    #contact .contact-wrapper{max-width:980px;margin:0 auto;display:grid;grid-template-columns:repeat(12,1fr);gap:22px;position:relative;z-index:2;}
+    .contact-card{grid-column:span 12;background:rgba(17,17,17,.75);border:1.5px solid var(--turq-30);border-radius:18px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.45);}
+    .contact-card p{color:#dfeff2;line-height:1.75;font-size:16px;margin-bottom:10px;}
+    .contact-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;}
+    .contact-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:12px;border:1px solid var(--turq-25);background:rgba(0,229,255,.06);color:#e9feff;font-weight:700;transition:transform .2s,box-shadow .2s,border-color .2s,background .2s;}
+    .contact-btn i{color:var(--turq);}
+    .contact-btn:hover{transform:translateY(-2px);box-shadow:0 10px 16px rgba(0,229,255,.12);border-color:var(--turq);background:rgba(0,229,255,.12);}
+
+    footer{padding:18px 10%;text-align:center;color:#9ddbe1;border-top:1px dashed var(--turq-30);}
+
+    /* ── CUSTOM CURSOR ── */
+    .cursor-dot{width:10px;height:10px;background:var(--turq);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s,height .2s,opacity .2s;box-shadow:0 0 12px var(--turq);}
+    .cursor-ring{width:34px;height:34px;border:2px solid var(--turq-60);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:transform .1s,width .2s,height .2s;}
+    @media(hover:none){.cursor-dot,.cursor-ring{display:none;}}
+
+    /* ── MOBILE ── */
+    @media(max-width:768px){
+      header{padding:12px 20px;flex-wrap:wrap;gap:8px;}
+      nav{display:none;}
+      section{padding:100px 5%;}
+      #home h2{font-size:30px;}
+      .stats-grid{grid-template-columns:repeat(2,1fr);}
     }
   </style>
 </head>
-
 <body>
-  <!-- =========================================================
-       ======================== HEADER =========================
-       ========================================================= -->
-  <header>
-    <h1>Tassadit Hammadi</h1>
 
-    <nav>
-      <a href="#home">Accueil</a>
-      <a href="#parcours">Parcours</a>
-      <a href="#experience">Expérience</a>
-      <a href="#skills">Compétences</a>
-      <a href="#projects">Projets</a>
-      <a href="#languages">Langues</a>
-      <a href="#contact">Contact</a>
-    </nav>
+<div id="scroll-progress"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-  
-  </header>
-
-  <section id="home">
-    <span class="shine-ring r2" style="left:-220px; top:-180px;"></span>
-    <span class="shine-ring r3"></span>
-
-    <div class="icon-container">
-      <i class="fas fa-laptop-code"></i>
+<!-- ══════════════════════════ HEADER ══════════════════════════ -->
+<header>
+  <h1>Tassadit Hammadi</h1>
+  <nav id="main-nav">
+    <a href="#home"     data-i18n="nav.home">Accueil</a>
+    <a href="#parcours" data-i18n="nav.parcours">Parcours</a>
+    <a href="#experience" data-i18n="nav.experience">Expérience</a>
+    <a href="#skills"   data-i18n="nav.skills">Compétences</a>
+    <a href="#projects" data-i18n="nav.projects">Projets</a>
+    <a href="#languages" data-i18n="nav.languages">Langues</a>
+    <a href="#contact"  data-i18n="nav.contact">Contact</a>
+  </nav>
+  <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-fr" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
     </div>
+    <button class="btn-cv" onclick="window.open('CVPROVF__1___2_.pdf')" data-i18n="header.cv">Télécharger CV</button>
+  </div>
+</header>
 
-    <h2>
-      Bienvenue dans mon <span>univers numérique</span>
-    </h2>
+<!-- ══════════════════════════ HOME ══════════════════════════ -->
+<section id="home">
+  <canvas id="particles-canvas"></canvas>
+  <span class="shine-ring r2"></span>
+  <span class="shine-ring r3"></span>
 
+  <div class="home-content">
+    <div class="icon-container"><i class="fas fa-laptop-code"></i></div>
+    <h2 data-i18n="home.title">Bienvenue dans mon univers numérique</h2>
     <div id="typed-text"></div>
-
-    <button class="cta" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
-      Voir mes projets ↓
-    </button>
-
-    <!-- floating code elements -->
-    <div class="floating-code" style="left:20%; --xMove:-100px; animation-delay:0s;">const name = "Tassadit";</div>
-    <div class="floating-code" style="left:40%; --xMove:60px; animation-delay:1s;">print("Bonjour le monde")</div>
-    <div class="floating-code" style="left:70%; --xMove:-80px; animation-delay:2s;">&lt;h1&gt;Portfolio Tassadit&lt;/h1&gt;</div>
-    <div class="floating-code" style="left:30%; --xMove:90px; animation-delay:3s;">function passion(){ return "Tech & IA"; }</div>
-    <div class="floating-code" style="left:55%; --xMove:-70px; animation-delay:4s;">.developer { creativity: 100%; }</div>
-    <div class="floating-code" style="left:65%; --xMove:50px; animation-delay:5s;"># Python: self.innovate()</div>
-    <div class="floating-code" style="left:25%; --xMove:-120px; animation-delay:6s;">System.out.println("Hello Tassadit");</div>
-    <div class="floating-code" style="left:75%; --xMove:80px; animation-delay:7s;">SELECT * FROM projets WHERE auteur="Tassadit";</div>
-    <div class="floating-code" style="left:50%; --xMove:100px; animation-delay:9s;">echo "Bienvenue dans l’univers numérique"</div>
-    <div class="floating-code" style="left:60%; --xMove:-90px; animation-delay:10s;">// JavaScript: let skills = ["React","Django","IA"];</div>
-    <div class="floating-code" style="left:80%; --xMove:-100px; animation-delay:12s;">public class Tassadit { }</div>
-    <div class="floating-code" style="left:38%; --xMove:60px; animation-delay:13s;">/* CSS : color: #00e5ff; */</div>
-    <div class="floating-code" style="left:68%; --xMove:-110px; animation-delay:14s;">💡 Code + Créativité = Tassadit</div>
-  </section>
-
-  <!-- =========================================================
-       ======================== PARCOURS =======================
-       ========================================================= -->
-  <section id="parcours">
-    <h2 class="section-title reveal">Mon Parcours Académique</h2>
-
-    <div class="timeline">
-      <div class="timeline-item left reveal">
-        <div class="timeline-content">
-          <h3>🎓 Baccalauréat en Informatique</h3>
-          <p>Université du Québec à Rimouski (UQAR), Campus Lévis – En cours, fin prévue 2026.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item right reveal">
-        <div class="timeline-content">
-          <h3>🎓 Licence en Informatique</h3>
-          <p>Université des Sciences et Technologies Houari Boumediene (USTHB), Algérie.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item left reveal">
-        <div class="timeline-content">
-          <h3>🎓 Diplôme du Secondaire</h3>
-          <p>Sciences Expérimentales – Algérie.</p>
-        </div>
-      </div>
+    <div class="home-badges">
+      <span class="home-badge">React · Django · Java</span>
+      <span class="home-badge">DevOps · CI/CD</span>
+      <span class="home-badge">IA · Cybersécurité</span>
     </div>
-  </section>
-
-  <!-- =========================================================
-       ======================== EXPERIENCE =====================
-       ========================================================= -->
-  <section id="experience">
-    <h2 class="section-title reveal">Expérience Professionnelle</h2>
-
-    <div class="experience-grid">
-      <div class="experience-card reveal">
-        <div class="icon-exp"><i class="fas fa-robot"></i></div>
-        <h3>Analyste en procédés administratifs</h3>
-        <h4>MTMD – Ministère des Transports</h4>
-        <p>Automatisation des processus administratifs, gestion des bases de données et transformation numérique.</p>
-      </div>
-
-      <div class="experience-card reveal">
-        <div class="icon-exp"><i class="fas fa-chalkboard-teacher"></i></div>
-        <h3>Éducatrice au milieu scolaire</h3>
-        <h4>École du Ruisseau</h4>
-        <p>Soutien aux élèves, aide aux devoirs, encadrement pédagogique, organisation d’activités éducatives.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       ===================== COMPÉTENCES (3D) ==================
-       ========================================================= -->
-  <section id="skills">
-    <h2 class="section-title reveal">Compétences</h2>
- 
-
-    <div class="skills-grid">
-      <!-- Frontend -->
-      <article class="skill-card reveal" data-tilt>
-        <div class="skill-glow"></div>
-        <div class="skill-header">
-          <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
-          <div>
-            <div class="skill-title">Frontend</div>
-            <div class="skill-sub">UI • SPA • UX</div>
-          </div>
-        </div>
-        <div class="skill-body">
-          <div class="tag-list">
-            <span class="tag">React</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">Redux Toolkit</span>
-            <span class="tag">Apollo Client</span>
-            <span class="tag">Tailwind CSS</span>
-          </div>
-          <ul class="skill-points">
-            <li>Interfaces modernes, responsive et performantes.</li>
-            <li>State global, Apollo cache, design system.</li>
-          </ul>
-        </div>
-      </article>
-
-      <!-- Backend -->
-      <article class="skill-card reveal" data-tilt>
-        <div class="skill-glow"></div>
-        <div class="skill-header">
-          <div class="skill-icon"><i class="fa-solid fa-server"></i></div>
-          <div>
-            <div class="skill-title">Backend</div>
-            <div class="skill-sub">APIs • Auth • Data</div>
-          </div>
-        </div>
-        <div class="skill-body">
-          <div class="tag-list">
-            <span class="tag">Django</span>
-            <span class="tag">GraphQL (Graphene)</span>
-            <span class="tag">ASP.NET Core</span>
-            <span class="tag">Entity Framework</span>
-            <span class="tag">SQL Server</span>
-          </div>
-          <ul class="skill-points">
-            <li>APIs REST/GraphQL robustes, auth JWT.</li>
-            <li>Monolithe MVC → Microservices (Ocelot).</li>
-          </ul>
-        </div>
-      </article>
-
-      <!-- Cloud & Déploiement -->
-      <article class="skill-card reveal" data-tilt>
-        <div class="skill-glow"></div>
-        <div class="skill-header">
-          <div class="skill-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-          <div>
-            <div class="skill-title">Cloud & Déploiement</div>
-            <div class="skill-sub">CI/CD • Hosting</div>
-          </div>
-        </div>
-        <div class="skill-body">
-          <div class="tag-list">
-            <span class="tag">Vercel</span>
-            <span class="tag">Render</span>
-            <span class="tag">Docker</span>
-            <span class="tag">Git/GitHub</span>
-          </div>
-          <ul class="skill-points">
-            <li>Front sur Vercel, API sur Render.</li>
-            <li>Conteneurisation & environments propres.</li>
-          </ul>
-        </div>
-      </article>
-
-      <!-- Paiements & APIs -->
-      <article class="skill-card reveal" data-tilt>
-        <div class="skill-glow"></div>
-        <div class="skill-header">
-          <div class="skill-icon"><i class="fa-solid fa-credit-card"></i></div>
-          <div>
-            <div class="skill-title">Paiements & APIs</div>
-            <div class="skill-sub">Stripe • Intégrations</div>
-          </div>
-        </div>
-        <div class="skill-body">
-          <div class="tag-list">
-            <span class="tag">Stripe</span>
-            <span class="tag">TravelPayouts</span>
-            <span class="tag">DummyJSON</span>
-            <span class="tag">NHTSA</span>
-          </div>
-          <ul class="skill-points">
-            <li>Paiements simulés, factures, webhooks.</li>
-            <li>Agrégation de données de services externes.</li>
-          </ul>
-        </div>
-      </article>
-
-      <!-- Sécurité & Réseau -->
-      <article class="skill-card reveal" data-tilt>
-        <div class="skill-glow"></div>
-        <div class="skill-header">
-          <div class="skill-icon"><i class="fa-solid fa-shield-halved"></i></div>
-          <div>
-            <div class="skill-title">Sécurité & Réseau</div>
-            <div class="skill-sub">MD5 • OTP • DHCP</div>
-          </div>
-        </div>
-        <div class="skill-body">
-          <div class="tag-list">
-            <span class="tag">Tkinter</span>
-            <span class="tag">hashlib</span>
-            <span class="tag">Wireshark</span>
-            <span class="tag">DHCP Snooping</span>
-            <span class="tag">IDS/IPS</span>
-          </div>
-          <ul class="skill-points">
-            <li>Attaques par dictionnaire (MD5), recommandations SHA-256/bcrypt.</li>
-            <li>OTP sécurisé (expiration 60s, lock 5 échecs).</li>
-          </ul>
-        </div>
-      </article>
-
-      <!-- Desktop & Architecture -->
-      <article class="skill-card reveal" data-tilt>
-        <div class="skill-glow"></div>
-        <div class="skill-header">
-          <div class="skill-icon"><i class="fa-solid fa-desktop"></i></div>
-          <div>
-            <div class="skill-title">Desktop & Architecture</div>
-            <div class="skill-sub">WPF • UML • MASM</div>
-          </div>
-        </div>
-        <div class="skill-body">
-          <div class="tag-list">
-            <span class="tag">C#</span>
-            <span class="tag">WPF/XAML</span>
-            <span class="tag">Clean Architecture</span>
-            <span class="tag">UML</span>
-            <span class="tag">MASM</span>
-          </div>
-          <ul class="skill-points">
-            <li>Pattern Repository, validations métier, migrations.</li>
-            <li>Simulation mémoire virtuelle & protections d’accès.</li>
-          </ul>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       ===================== PROJETS (cercle) ==================
-       ========================================================= -->
-  <section id="projects">
-    <h2 class="section-title reveal">Mes Projets</h2>
-
-    <span class="shine-ring" style="left:-80px; top:-40px;"></span>
-
-    <div class="projects-wrapper reveal">
-      <div class="project-nav project-prev" onclick="prevProject()">&#10094;</div>
-
-      <div class="project-circle">
-        <div class="circle-border"></div>
-        <div class="project-content">
-          <i id="project-icon" class="fas fa-laptop-code"></i>
-          <h3 id="project-title">Projet 1</h3>
-          <button class="project-btn" onclick="openModal()">Voir description</button>
-        </div>
-      </div>
-
-      <div class="project-nav project-next" onclick="nextProject()">&#10095;</div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       ======================== MODAL ==========================
-       ========================================================= -->
-  <div class="modal" id="projectModal">
-    <div class="modal-content">
-      <h3 id="modal-title">Titre projet</h3>
-      <div id="modal-desc"></div>
-      <button class="close-btn" onclick="closeModal()">Fermer</button>
-    </div>
+    <button class="cta" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})" data-i18n="home.cta">Voir mes projets ↓</button>
   </div>
 
-  <!-- =========================================================
-       =============== LANGUES PARLÉES (NOUVEAU) ===============
-       ========================================================= -->
-  <section id="languages">
-    <h2 class="section-title reveal">Langues parlées</h2>
+  <div class="floating-code" style="left:20%;--xMove:-100px;animation-delay:0s;">const name = "Tassadit";</div>
+  <div class="floating-code" style="left:40%;--xMove:60px;animation-delay:1s;">print("Bonjour le monde")</div>
+  <div class="floating-code" style="left:70%;--xMove:-80px;animation-delay:2s;">&lt;h1&gt;Portfolio Tassadit&lt;/h1&gt;</div>
+  <div class="floating-code" style="left:30%;--xMove:90px;animation-delay:3s;">function passion(){ return "Tech & IA"; }</div>
+  <div class="floating-code" style="left:55%;--xMove:-70px;animation-delay:4s;">.developer { creativity: 100%; }</div>
+  <div class="floating-code" style="left:65%;--xMove:50px;animation-delay:5s;"># Python: self.innovate()</div>
+  <div class="floating-code" style="left:25%;--xMove:-120px;animation-delay:6s;">System.out.println("Hello Tassadit");</div>
+  <div class="floating-code" style="left:75%;--xMove:80px;animation-delay:7s;">SELECT * FROM projets WHERE auteur='Tassadit';</div>
+  <div class="floating-code" style="left:50%;--xMove:100px;animation-delay:9s;">@app.route('/api/v1/genius')</div>
+  <div class="floating-code" style="left:60%;--xMove:-90px;animation-delay:10s;">let skills = ["React","Django","Kafka","IA"];</div>
+  <div class="floating-code" style="left:80%;--xMove:-100px;animation-delay:12s;">docker build -t tassadit .</div>
+  <div class="floating-code" style="left:38%;--xMove:60px;animation-delay:13s;">/* color: #00e5ff; */</div>
+</section>
 
-    <div class="lang-grid">
-      <!-- Arabe -->
-      <article class="lang-card reveal" data-tilt-lang>
-        <div class="lang-glow"></div>
-        <div class="lang-flag" aria-hidden="true">🌙</div>
-        <div class="lang-name">Arabe</div>
-        <div class="lang-level">Très bien (C1/C2)</div>
-        <div class="lang-stars" title="niveau">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star-half-stroke"></i>
-        </div>
-      </article>
-
-      <!-- Kabyle -->
-      <article class="lang-card reveal" data-tilt-lang>
-        <div class="lang-glow"></div>
-        <div class="lang-flag" aria-hidden="true">ⵣ</div>
-        <div class="lang-name">Kabyle</div>
-        <div class="lang-level">Très bien (C1/C2)</div>
-        <div class="lang-stars" title="niveau">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-        </div>
-      </article>
-
-      <!-- Français -->
-      <article class="lang-card reveal" data-tilt-lang>
-        <div class="lang-glow"></div>
-        <div class="lang-flag" aria-hidden="true">🇫🇷</div>
-        <div class="lang-name">Français</div>
-        <div class="lang-level">Très bien (C1/C2)</div>
-        <div class="lang-stars" title="niveau">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star-half-stroke"></i>
-        </div>
-      </article>
-
-      <!-- Anglais -->
-      <article class="lang-card reveal" data-tilt-lang>
-        <div class="lang-glow"></div>
-        <div class="lang-flag" aria-hidden="true">🇬🇧</div>
-        <div class="lang-name">Anglais</div>
-        <div class="lang-level">Très bien</div>
-        <div class="lang-stars" title="niveau">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-        </div>
-      </article>
+<!-- ══════════════════════════ STATS ══════════════════════════ -->
+<section id="stats">
+  <div class="stats-grid">
+    <div class="stat-item reveal">
+      <span class="stat-number" data-target="11">0</span><span class="stat-suffix">+</span>
+      <span class="stat-label" data-i18n="stats.projects">Projets réalisés</span>
     </div>
-  </section>
+    <div class="stat-item reveal">
+      <span class="stat-number" data-target="3">0</span>
+      <span class="stat-label" data-i18n="stats.jobs">Stages & emplois</span>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-number" data-target="20">0</span><span class="stat-suffix">+</span>
+      <span class="stat-label" data-i18n="stats.tech">Technologies maîtrisées</span>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-number" data-target="4">0</span>
+      <span class="stat-label" data-i18n="stats.langs">Langues parlées</span>
+    </div>
+  </div>
+</section>
 
-  <!-- =========================================================
-       ========================= CONTACT =======================
-       ========================================================= -->
-  <section id="contact">
-    <h2 class="section-title reveal">Contact</h2>
-
-    <div class="contact-wrapper reveal">
-      <div class="contact-card">
-        <p>
-          Pour toute <strong>offre d’emploi</strong>, <strong>stage</strong>, <strong>collaboration</strong> ou <strong>projet</strong>, contactez-moi :
-        </p>
-
-        <p>
-          📧 Email :
-          <a href="mailto:hammaditassadit03@gmail.com" style="color:#00e5ff; text-decoration: underline;">
-            hammaditassadit03@gmail.com
-          </a>
-        </p>
-
-        <p>
-          📱 Téléphone :
-          <a href="tel:+14389214621" style="color:#00e5ff; text-decoration: underline;">
-            +1 438 921 4621
-          </a>
-        </p>
-
-        <div class="contact-actions">
-          <a class="contact-btn" href="mailto:hammaditassadit03@gmail.com?subject=Contact%20depuis%20Portfolio&body=Bonjour%20Tassadit%2C%0A%0AJe%20vous%20contacte%20pour%20...">
-            <i class="fa-solid fa-envelope"></i>
-            Envoyer un email
-          </a>
-
-          <a class="contact-btn" href="tel:+14389214621">
-            <i class="fa-solid fa-phone"></i>
-            Appeler
-          </a>
-
-          <a class="contact-btn" href="#projects">
-            <i class="fa-solid fa-briefcase"></i>
-            Voir mes projets
-          </a>
-        </div>
+<!-- ══════════════════════════ PARCOURS ══════════════════════════ -->
+<section id="parcours">
+  <h2 class="section-title reveal" data-i18n="parcours.title">Mon Parcours Académique</h2>
+  <div class="timeline">
+    <div class="timeline-item left reveal">
+      <div class="timeline-content">
+        <h3 data-i18n="parcours.uqar.title">🎓 Baccalauréat en Informatique</h3>
+        <p data-i18n="parcours.uqar.desc">Université du Québec à Rimouski (UQAR), Campus Lévis – Finissante, avril 2026.</p>
       </div>
     </div>
-  </section>
+    <div class="timeline-item right reveal">
+      <div class="timeline-content">
+        <h3 data-i18n="parcours.usthb.title">🎓 Licence en Informatique</h3>
+        <p data-i18n="parcours.usthb.desc">Université des Sciences et Technologies Houari Boumediene (USTHB), Algérie – 2021-2023.</p>
+      </div>
+    </div>
+    <div class="timeline-item left reveal">
+      <div class="timeline-content">
+        <h3 data-i18n="parcours.bac.title">🎓 Diplôme du Secondaire</h3>
+        <p data-i18n="parcours.bac.desc">Sciences Expérimentales – Algérie.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <p>© 2025 Tassadit Hammadi · Portfolio</p>
-  </footer>
+<!-- ══════════════════════════ EXPERIENCE ══════════════════════════ -->
+<section id="experience">
+  <h2 class="section-title reveal" data-i18n="exp.title">Expérience Professionnelle</h2>
+  <div class="experience-grid">
 
-  <!-- =========================================================
-       ========================== SCRIPT =======================
-       ========================================================= -->
-  <script>
-    /* =========================================================
-       ================ Typing effect (home) ===================
-       ========================================================= */
+    <div class="experience-card featured reveal">
+      <div class="exp-badge" data-i18n="exp.badge.recent">Stage récent</div>
+      <div class="icon-exp"><i class="fas fa-code-branch"></i></div>
+      <h3 data-i18n="exp.mcn.role">Analyste – Développement logiciel</h3>
+      <h4>MCN</h4>
+      <div class="exp-period">Janvier – Mai 2026</div>
+      <p data-i18n="exp.mcn.desc">Développement backend/frontend Java (Quarkus) & React en architecture distribuée. Intégration Kafka, authentification Keycloak, PostgreSQL, pipelines CI/CD GitLab. Détection de vulnérabilités et revue de code en Agile Scrum.</p>
+      <div class="exp-tags">
+        <span class="exp-tag">Java / Quarkus</span><span class="exp-tag">React</span>
+        <span class="exp-tag">Kafka</span><span class="exp-tag">Keycloak</span>
+        <span class="exp-tag">PostgreSQL</span><span class="exp-tag">GitLab CI/CD</span>
+        <span class="exp-tag">Scrum</span>
+      </div>
+    </div>
 
-    const text = [
-      "Exploratrice du code",
-      "Développeuse Web",
-      "UI/UX Designer",
-      "Passionnée de Tech",
-      "Innovatrice en IA"
-    ];
+    <div class="experience-card reveal">
+      <div class="icon-exp"><i class="fas fa-robot"></i></div>
+      <h3 data-i18n="exp.mtmd.role">Analyste en procédés administratifs</h3>
+      <h4>MTMD – Ministère des Transports</h4>
+      <div class="exp-period">Mai – Décembre 2025 | Québec (Hybride)</div>
+      <p data-i18n="exp.mtmd.desc">Scripts Python pour automatisation, bases de données Access/SQL, flux Power Automate, optimisation des processus internes et collaboration avec les équipes TI.</p>
+      <div class="exp-tags">
+        <span class="exp-tag">Python</span><span class="exp-tag">SQL / Access</span>
+        <span class="exp-tag">Power Automate</span><span class="exp-tag">Automatisation</span>
+      </div>
+    </div>
 
-    let index = 0;
-    let char = 0;
-    let isDeleting = false;
+    <div class="experience-card reveal">
+      <div class="icon-exp"><i class="fas fa-chalkboard-teacher"></i></div>
+      <h3 data-i18n="exp.edu.role">Éducatrice en milieu scolaire</h3>
+      <h4 data-i18n="exp.edu.org">Centre de services scolaire</h4>
+      <div class="exp-period">2023 – 2024 | Lévis</div>
+      <p data-i18n="exp.edu.desc">Encadrement d'élèves, organisation d'activités éducatives et numériques, développement des compétences en communication et travail d'équipe.</p>
+      <div class="exp-tags">
+        <span class="exp-tag" data-i18n="exp.edu.tag1">Communication</span>
+        <span class="exp-tag" data-i18n="exp.edu.tag2">Pédagogie</span>
+      </div>
+    </div>
 
-    function type(){
-      const current = text[index];
-      const target = document.getElementById("typed-text");
-      if(!target) return;
+  </div>
+</section>
 
-      target.innerHTML = current.substring(0, char) + "|";
+<!-- ══════════════════════════ SKILLS ══════════════════════════ -->
+<section id="skills">
+  <h2 class="section-title reveal" data-i18n="skills.title">Compétences</h2>
+  <div class="skills-grid">
 
-      if(!isDeleting && char < current.length){
-        char++;
-      } else if(isDeleting && char > 0){
-        char--;
-      } else if(!isDeleting && char === current.length){
-        isDeleting = true;
-        setTimeout(type, 1200);
-        return;
-      } else if(isDeleting && char === 0){
-        isDeleting = false;
-        index = (index + 1) % text.length;
-      }
+    <!-- ── Langages de programmation ── -->
+    <article class="skill-card reveal" data-tilt>
+      <div class="skill-glow"></div>
+      <div class="skill-header">
+        <div class="skill-icon"><i class="fa-solid fa-terminal"></i></div>
+        <div>
+          <div class="skill-title" data-i18n="skill.langs.title">Langages</div>
+          <div class="skill-sub" data-i18n="skill.langs.sub">10+ langages</div>
+        </div>
+      </div>
+      <div class="skill-body">
+        <div class="tag-list">
+          <span class="tag">Python</span><span class="tag">Java</span>
+          <span class="tag">JavaScript</span><span class="tag">TypeScript</span>
+          <span class="tag">C#</span><span class="tag">C</span>
+          <span class="tag">C++</span><span class="tag">PHP</span>
+          <span class="tag">SQL</span><span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+        </div>
+        <ul class="skill-points">
+          <li data-i18n="skill.langs.p1">Maîtrise multi-paradigme : OO, fonctionnel, bas niveau.</li>
+          <li data-i18n="skill.langs.p2">Web, systèmes, données et automatisation.</li>
+        </ul>
+      </div>
+    </article>
 
-      setTimeout(type, isDeleting ? 50 : 120);
+    <!-- ── Frontend ── -->
+    <article class="skill-card reveal" data-tilt>
+      <div class="skill-glow"></div>
+      <div class="skill-header">
+        <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
+        <div>
+          <div class="skill-title" data-i18n="skill.frontend.title">Frontend</div>
+          <div class="skill-sub">UI · SPA · UX</div>
+        </div>
+      </div>
+      <div class="skill-body">
+        <div class="tag-list">
+          <span class="tag">React.js</span><span class="tag">TypeScript</span>
+          <span class="tag">Redux Toolkit</span><span class="tag">Tailwind CSS</span>
+          <span class="tag">Apollo Client</span><span class="tag">HTML/CSS</span>
+        </div>
+        <ul class="skill-points">
+          <li data-i18n="skill.frontend.p1">Interfaces modernes, responsive & performantes.</li>
+          <li data-i18n="skill.frontend.p2">State global, design system, SPA.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ── Backend ── -->
+    <article class="skill-card reveal" data-tilt>
+      <div class="skill-glow"></div>
+      <div class="skill-header">
+        <div class="skill-icon"><i class="fa-solid fa-server"></i></div>
+        <div>
+          <div class="skill-title" data-i18n="skill.backend.title">Backend</div>
+          <div class="skill-sub">APIs · Auth · Data</div>
+        </div>
+      </div>
+      <div class="skill-body">
+        <div class="tag-list">
+          <span class="tag">Django / DRF</span><span class="tag">Flask</span>
+          <span class="tag">Java / Quarkus</span><span class="tag">Node.js</span>
+          <span class="tag">ASP.NET Core</span><span class="tag">GraphQL</span>
+        </div>
+        <ul class="skill-points">
+          <li data-i18n="skill.backend.p1">APIs REST/GraphQL robustes, auth JWT.</li>
+          <li data-i18n="skill.backend.p2">Architectures microservices & monolithes.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ── DevOps & Cloud ── -->
+    <article class="skill-card reveal" data-tilt>
+      <div class="skill-glow"></div>
+      <div class="skill-header">
+        <div class="skill-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+        <div>
+          <div class="skill-title" data-i18n="skill.devops.title">DevOps & Cloud</div>
+          <div class="skill-sub">CI/CD · GitOps · Cloud</div>
+        </div>
+      </div>
+      <div class="skill-body">
+        <div class="tag-list">
+          <span class="tag">Docker</span><span class="tag">GitLab CI/CD</span>
+          <span class="tag">GitHub Actions</span><span class="tag">ArgoCD</span>
+          <span class="tag">Azure</span><span class="tag">Vercel</span><span class="tag">Render</span>
+          <span class="tag aws-tag">☁️ AWS <span class="cert-badge" data-i18n="skill.aws.badge">En cours</span></span>
+        </div>
+        <ul class="skill-points">
+          <li data-i18n="skill.devops.p1">Pipelines CI/CD, déploiement continu, GitOps (ArgoCD).</li>
+          <li data-i18n="skill.devops.p2">Conteneurisation & certification AWS Coursera (en cours).</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ── Git & Outils ── -->
+    <article class="skill-card reveal" data-tilt>
+      <div class="skill-glow"></div>
+      <div class="skill-header">
+        <div class="skill-icon"><i class="fa-brands fa-git-alt"></i></div>
+        <div>
+          <div class="skill-title" data-i18n="skill.git.title">Git & Outils</div>
+          <div class="skill-sub">VCS · IDE · Design</div>
+        </div>
+      </div>
+      <div class="skill-body">
+        <div class="tag-list">
+          <span class="tag">Git</span><span class="tag">GitHub</span>
+          <span class="tag">GitLab</span><span class="tag">GitFlow</span>
+          <span class="tag">VS Code</span><span class="tag">Visual Studio</span>
+          <span class="tag">Figma</span><span class="tag">Lucidchart</span>
+          <span class="tag">Visual Paradigm</span><span class="tag">Shopify</span>
+        </div>
+        <ul class="skill-points">
+          <li data-i18n="skill.git.p1">Gestion de version, branches, PR, code review.</li>
+          <li data-i18n="skill.git.p2">Conception UML, maquettage, prototypage.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ── Bases de données ── -->
+    <article class="skill-card reveal" data-tilt>
+      <div class="skill-glow"></div>
+      <div class="skill-header">
+        <div class="skill-icon"><i class="fa-solid fa-database"></i></div>
+        <div>
+          <div class="skill-title" data-i18n="skill.db.title">Bases de données</div>
+          <div class="skill-sub">SQL · NoSQL</div>
+        </div>
+      </div>
+      <div class="skill-body">
+        <div class="tag-list">
+          <span class="tag">PostgreSQL</span><span class="tag">SQL Server</span>
+          <span class="tag">MongoDB</span><span class="tag">Oracle</span>
+          <span class="tag">Access</span>
+        </div>
+        <ul class="skill-points">
+          <li data-i18n="skill.db.p1">Modélisation relationnelle & requêtes avancées.</li>
+          <li data-i18n="skill.db.p2">Migrations, Entity Framework, ORM Django.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ── Sécurité & Intégration ── -->
+    <article class="skill-card reveal" data-tilt>
+      <div class="skill-glow"></div>
+      <div class="skill-header">
+        <div class="skill-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div>
+          <div class="skill-title" data-i18n="skill.security.title">Sécurité & Intégration</div>
+          <div class="skill-sub">Auth · Kafka · Vulnérabilités</div>
+        </div>
+      </div>
+      <div class="skill-body">
+        <div class="tag-list">
+          <span class="tag">Keycloak</span><span class="tag">JWT / OAuth</span>
+          <span class="tag">Kafka</span><span class="tag">Stripe</span>
+          <span class="tag">IDS/IPS</span><span class="tag">Wireshark</span>
+          <span class="tag">Power Automate</span>
+        </div>
+        <ul class="skill-points">
+          <li data-i18n="skill.security.p1">Authentification OAuth, gestion des accès.</li>
+          <li data-i18n="skill.security.p2">Analyse de vulnérabilités, messagerie async.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ── Assurance Qualité ── -->
+    <article class="skill-card reveal" data-tilt>
+      <div class="skill-glow"></div>
+      <div class="skill-header">
+        <div class="skill-icon"><i class="fa-solid fa-flask-vial"></i></div>
+        <div>
+          <div class="skill-title" data-i18n="skill.qa.title">Assurance Qualité</div>
+          <div class="skill-sub">Tests · QA · Méthodologies</div>
+        </div>
+      </div>
+      <div class="skill-body">
+        <div class="tag-list">
+          <span class="tag">Tests unitaires</span>
+          <span class="tag">Tests d'intégration</span>
+          <span class="tag">Non-régression</span>
+          <span class="tag">TDD</span>
+          <span class="tag">BDD</span>
+          <span class="tag">pytest</span>
+          <span class="tag">JUnit</span>
+          <span class="tag">Selenium</span>
+          <span class="tag">Behave</span>
+        </div>
+        <ul class="skill-points">
+          <li data-i18n="skill.qa.p1">TDD (Test-Driven) & BDD (Behaviour-Driven Development).</li>
+          <li data-i18n="skill.qa.p2">Suites de tests automatisées, couverture de code, CI.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ── Desktop & Architecture ── -->
+    <article class="skill-card reveal" data-tilt>
+      <div class="skill-glow"></div>
+      <div class="skill-header">
+        <div class="skill-icon"><i class="fa-solid fa-desktop"></i></div>
+        <div>
+          <div class="skill-title" data-i18n="skill.desktop.title">Desktop & Architecture</div>
+          <div class="skill-sub">WPF · UML · MASM</div>
+        </div>
+      </div>
+      <div class="skill-body">
+        <div class="tag-list">
+          <span class="tag">C# / WPF</span><span class="tag">Clean Architecture</span>
+          <span class="tag">MVC / MVVM</span><span class="tag">UML</span>
+          <span class="tag">MASM</span><span class="tag">Agile / Scrum</span>
+        </div>
+        <ul class="skill-points">
+          <li data-i18n="skill.desktop.p1">Pattern Repository, validations métier, migrations.</li>
+          <li data-i18n="skill.desktop.p2">Architectures propres, documentation technique.</li>
+        </ul>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════ PROJECTS ══════════════════════════ -->
+<section id="projects">
+  <h2 class="section-title reveal" data-i18n="proj.title">Mes Projets</h2>
+  <span class="shine-ring" style="left:-80px;top:-40px;"></span>
+
+  <div class="projects-filter reveal" id="filter-btns">
+    <button class="filter-btn active" data-filter="all" data-i18n="proj.filter.all">Tous</button>
+    <button class="filter-btn" data-filter="web" data-i18n="proj.filter.web">Web</button>
+    <button class="filter-btn" data-filter="security" data-i18n="proj.filter.security">Sécurité</button>
+    <button class="filter-btn" data-filter="desktop" data-i18n="proj.filter.desktop">Desktop</button>
+  </div>
+
+  <div class="projects-carousel-wrapper reveal">
+    <div class="projects-track" id="projects-track"></div>
+    <div class="carousel-controls">
+      <button class="carousel-btn" onclick="carouselPrev()"><i class="fas fa-chevron-left"></i></button>
+      <div class="carousel-dots" id="carousel-dots"></div>
+      <button class="carousel-btn" onclick="carouselNext()"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ MODAL ══════════════════════════ -->
+<div class="modal" id="projectModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="modal-icon" id="modal-icon-el"></span>
+      <h3 id="modal-title">Titre projet</h3>
+    </div>
+    <div class="modal-tags" id="modal-tags"></div>
+    <div id="modal-desc"></div>
+    <button class="modal-close-btn" id="modal-close-txt" onclick="closeModal()">Fermer</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════ LANGUAGES ══════════════════════════ -->
+<section id="languages">
+  <h2 class="section-title reveal" data-i18n="lang.title">Langues parlées</h2>
+  <div class="lang-grid">
+    <article class="lang-card reveal" data-tilt-lang>
+      <div class="lang-glow"></div>
+      <div class="lang-flag">🌙</div>
+      <div class="lang-name" data-i18n="lang.arabic">Arabe</div>
+      <div class="lang-level">C1/C2</div>
+      <div class="lang-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+    </article>
+    <article class="lang-card reveal" data-tilt-lang>
+      <div class="lang-glow"></div>
+      <div class="lang-flag">ⵣ</div>
+      <div class="lang-name" data-i18n="lang.kabyle">Kabyle</div>
+      <div class="lang-level">C1/C2</div>
+      <div class="lang-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+    </article>
+    <article class="lang-card reveal" data-tilt-lang>
+      <div class="lang-glow"></div>
+      <div class="lang-flag">🇫🇷</div>
+      <div class="lang-name" data-i18n="lang.french">Français</div>
+      <div class="lang-level">C1/C2</div>
+      <div class="lang-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+    </article>
+    <article class="lang-card reveal" data-tilt-lang>
+      <div class="lang-glow"></div>
+      <div class="lang-flag">🇬🇧</div>
+      <div class="lang-name" data-i18n="lang.english">Anglais</div>
+      <div class="lang-level">B2/C1</div>
+      <div class="lang-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CONTACT ══════════════════════════ -->
+<section id="contact">
+  <h2 class="section-title reveal" data-i18n="contact.title">Contact</h2>
+  <div class="contact-wrapper reveal">
+    <div class="contact-card">
+      <p data-i18n="contact.intro">Pour toute <strong>offre d'emploi</strong>, <strong>stage</strong>, <strong>collaboration</strong> ou <strong>projet</strong>, contactez-moi :</p>
+      <p>📧 Email : <a href="mailto:hammaditassadit03@gmail.com" style="color:#00e5ff;text-decoration:underline;">hammaditassadit03@gmail.com</a></p>
+      <p>📱 <span data-i18n="contact.phone">Téléphone</span> : <a href="tel:+14389214621" style="color:#00e5ff;text-decoration:underline;">+1 438 921 4621</a></p>
+      <div class="contact-actions">
+        <a class="contact-btn" href="mailto:hammaditassadit03@gmail.com?subject=Contact%20Portfolio&body=Bonjour%20Tassadit,">
+          <i class="fa-solid fa-envelope"></i><span data-i18n="contact.btn.email">Envoyer un email</span>
+        </a>
+        <a class="contact-btn" href="tel:+14389214621">
+          <i class="fa-solid fa-phone"></i><span data-i18n="contact.btn.call">Appeler</span>
+        </a>
+        <a class="contact-btn" href="https://www.linkedin.com/in/tassadit-hammadi-6b89a4323" target="_blank">
+          <i class="fa-brands fa-linkedin"></i>LinkedIn
+        </a>
+        <a class="contact-btn" href="#projects">
+          <i class="fa-solid fa-briefcase"></i><span data-i18n="contact.btn.projects">Voir mes projets</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Tassadit Hammadi · Portfolio</p>
+</footer>
+
+<!-- ══════════════════════════ SCRIPTS ══════════════════════════ -->
+<script>
+/* ──────────────────────────────────────────────────────────
+   I18N SYSTEM
+────────────────────────────────────────────────────────── */
+const translations = {
+  fr: {
+    'nav.home':'Accueil','nav.parcours':'Parcours','nav.experience':'Expérience',
+    'nav.skills':'Compétences','nav.projects':'Projets','nav.languages':'Langues','nav.contact':'Contact',
+    'header.cv':'Télécharger CV',
+    'home.title':'Bienvenue dans mon univers numérique','home.cta':'Voir mes projets ↓',
+    'stats.projects':'Projets réalisés','stats.jobs':'Stages & emplois',
+    'stats.tech':'Technologies maîtrisées','stats.langs':'Langues parlées',
+    'parcours.title':'Mon Parcours Académique',
+    'parcours.uqar.title':'🎓 Baccalauréat en Informatique',
+    'parcours.uqar.desc':'Université du Québec à Rimouski (UQAR), Campus Lévis – Finissante, avril 2026.',
+    'parcours.usthb.title':'🎓 Licence en Informatique',
+    'parcours.usthb.desc':'Université des Sciences et Technologies Houari Boumediene (USTHB), Algérie – 2021-2023.',
+    'parcours.bac.title':'🎓 Diplôme du Secondaire',
+    'parcours.bac.desc':'Sciences Expérimentales – Algérie.',
+    'exp.title':'Expérience Professionnelle','exp.badge.recent':'Stage récent',
+    'exp.mcn.role':'Analyste – Développement logiciel',
+    'exp.mcn.desc':'Développement backend/frontend Java (Quarkus) & React en architecture distribuée. Intégration Kafka, authentification Keycloak, PostgreSQL, pipelines CI/CD GitLab. Détection de vulnérabilités en Agile Scrum.',
+    'exp.mtmd.role':'Analyste en procédés administratifs',
+    'exp.mtmd.desc':'Scripts Python pour automatisation, bases de données Access/SQL, flux Power Automate, optimisation des processus internes.',
+    'exp.edu.role':'Éducatrice en milieu scolaire','exp.edu.org':'Centre de services scolaire',
+    'exp.edu.desc':'Encadrement d\'élèves, organisation d\'activités éducatives et numériques, communication et travail d\'équipe.',
+    'exp.edu.tag1':'Communication','exp.edu.tag2':'Pédagogie',
+    'skills.title':'Compétences',
+    'skill.frontend.title':'Frontend','skill.frontend.p1':'Interfaces modernes, responsive & performantes.','skill.frontend.p2':'State global, design system, SPA.',
+    'skill.backend.title':'Backend','skill.backend.p1':'APIs REST/GraphQL robustes, auth JWT.','skill.backend.p2':'Architectures microservices & monolithes.',
+    'skill.devops.title':'DevOps & Cloud','skill.devops.p1':'Pipelines CI/CD, déploiement continu, GitOps (ArgoCD).','skill.devops.p2':'Conteneurisation & certification AWS Coursera (en cours).',
+    'skill.aws.badge':'En cours',
+    'skill.git.title':'Git & Outils','skill.git.p1':'Gestion de version, branches, PR, code review.','skill.git.p2':'Conception UML, maquettage, prototypage.',
+    'skill.db.title':'Bases de données','skill.db.p1':'Modélisation relationnelle & requêtes avancées.','skill.db.p2':'Migrations, Entity Framework, ORM Django.',
+    'skill.security.title':'Sécurité & Intégration','skill.security.p1':'Authentification OAuth, gestion des accès.','skill.security.p2':'Analyse de vulnérabilités, messagerie async.',
+    'skill.qa.title':'Assurance Qualité','skill.qa.p1':'TDD (Test-Driven) & BDD (Behaviour-Driven Development).','skill.qa.p2':'Suites de tests automatisées, couverture de code, CI.',
+    'skill.desktop.title':'Desktop & Architecture','skill.desktop.p1':'Pattern Repository, validations métier, migrations.','skill.desktop.p2':'Architectures propres, documentation technique.',
+    'skill.langs.title':'Langages','skill.langs.sub':'10+ langages','skill.langs.p1':'Maîtrise multi-paradigme : OO, fonctionnel, bas niveau.','skill.langs.p2':'Web, systèmes, données et automatisation.',
+    'proj.title':'Mes Projets','proj.filter.all':'Tous','proj.filter.web':'Web','proj.filter.security':'Sécurité','proj.filter.desktop':'Desktop',
+    'lang.title':'Langues parlées','lang.arabic':'Arabe','lang.kabyle':'Kabyle','lang.french':'Français','lang.english':'Anglais',
+    'contact.title':'Contact','contact.intro':'Pour toute <strong>offre d\'emploi</strong>, <strong>stage</strong>, <strong>collaboration</strong> ou <strong>projet</strong>, contactez-moi :',
+    'contact.phone':'Téléphone','contact.btn.email':'Envoyer un email','contact.btn.call':'Appeler','contact.btn.projects':'Voir mes projets',
+    'modal.close':'Fermer'
+  },
+  en: {
+    'nav.home':'Home','nav.parcours':'Education','nav.experience':'Experience',
+    'nav.skills':'Skills','nav.projects':'Projects','nav.languages':'Languages','nav.contact':'Contact',
+    'header.cv':'Download CV',
+    'home.title':'Welcome to my digital universe','home.cta':'View my projects ↓',
+    'stats.projects':'Projects completed','stats.jobs':'Internships & jobs',
+    'stats.tech':'Technologies mastered','stats.langs':'Languages spoken',
+    'parcours.title':'My Academic Journey',
+    'parcours.uqar.title':'🎓 Bachelor in Computer Science',
+    'parcours.uqar.desc':'Université du Québec à Rimouski (UQAR), Lévis Campus – Graduating April 2026.',
+    'parcours.usthb.title':'🎓 Bachelor in Computer Science',
+    'parcours.usthb.desc':'Houari Boumediene University of Science and Technology (USTHB), Algeria – 2021-2023.',
+    'parcours.bac.title':'🎓 High School Diploma',
+    'parcours.bac.desc':'Experimental Sciences – Algeria.',
+    'exp.title':'Professional Experience','exp.badge.recent':'Recent Internship',
+    'exp.mcn.role':'Analyst – Software Development',
+    'exp.mcn.desc':'Backend/frontend development with Java (Quarkus) & React in a distributed architecture. Kafka integration, Keycloak authentication, PostgreSQL, GitLab CI/CD pipelines. Vulnerability detection in Agile Scrum.',
+    'exp.mtmd.role':'Administrative Process Analyst',
+    'exp.mtmd.desc':'Python scripts for automation, Access/SQL databases, Power Automate workflows, internal process optimization.',
+    'exp.edu.role':'School Educator','exp.edu.org':'School Service Center',
+    'exp.edu.desc':'Student supervision, organization of educational and digital activities, communication and teamwork skills.',
+    'exp.edu.tag1':'Communication','exp.edu.tag2':'Pedagogy',
+    'skills.title':'Skills',
+    'skill.frontend.title':'Frontend','skill.frontend.p1':'Modern, responsive & performant interfaces.','skill.frontend.p2':'Global state, design system, SPA.',
+    'skill.backend.title':'Backend','skill.backend.p1':'Robust REST/GraphQL APIs, JWT auth.','skill.backend.p2':'Microservices & monolith architectures.',
+    'skill.devops.title':'DevOps & Cloud','skill.devops.p1':'CI/CD pipelines, continuous deployment, GitOps (ArgoCD).','skill.devops.p2':'Containerization & AWS Coursera certification (in progress).',
+    'skill.aws.badge':'In progress',
+    'skill.git.title':'Git & Tools','skill.git.p1':'Version control, branches, PR, code review.','skill.git.p2':'UML design, wireframing, prototyping.',
+    'skill.db.title':'Databases','skill.db.p1':'Relational modeling & advanced queries.','skill.db.p2':'Migrations, Entity Framework, Django ORM.',
+    'skill.security.title':'Security & Integration','skill.security.p1':'OAuth authentication, access management.','skill.security.p2':'Vulnerability analysis, async messaging.',
+    'skill.qa.title':'Quality Assurance','skill.qa.p1':'TDD (Test-Driven) & BDD (Behaviour-Driven Development).','skill.qa.p2':'Automated test suites, code coverage, CI.',
+    'skill.desktop.title':'Desktop & Architecture','skill.desktop.p1':'Repository pattern, business validations, migrations.','skill.desktop.p2':'Clean architectures, technical documentation.',
+    'skill.langs.title':'Languages','skill.langs.sub':'10+ languages','skill.langs.p1':'Multi-paradigm mastery: OO, functional, low-level.','skill.langs.p2':'Web, systems, data and automation.',
+    'proj.title':'My Projects','proj.filter.all':'All','proj.filter.web':'Web','proj.filter.security':'Security','proj.filter.desktop':'Desktop',
+    'lang.title':'Languages spoken','lang.arabic':'Arabic','lang.kabyle':'Kabyle','lang.french':'French','lang.english':'English',
+    'contact.title':'Contact','contact.intro':'For any <strong>job offer</strong>, <strong>internship</strong>, <strong>collaboration</strong> or <strong>project</strong>, contact me:',
+    'contact.phone':'Phone','contact.btn.email':'Send an email','contact.btn.call':'Call','contact.btn.projects':'View my projects',
+    'modal.close':'Close'
+  }
+};
+
+let currentLang = 'fr';
+
+function t(key){ return translations[currentLang][key] || key; }
+
+function applyLang(){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.dataset.i18n;
+    const val = translations[currentLang][key];
+    if(val !== undefined) el.innerHTML = val;
+  });
+  document.documentElement.lang = currentLang;
+  document.getElementById('modal-close-txt').textContent = t('modal.close');
+  updateTypedArray();
+  renderProjects();
+  updateFilterBtns();
+}
+
+function setLang(lang){
+  currentLang = lang;
+  document.getElementById('btn-fr').classList.toggle('active', lang==='fr');
+  document.getElementById('btn-en').classList.toggle('active', lang==='en');
+  applyLang();
+}
+
+/* ──────────────────────────────────────────────────────────
+   PROJECTS DATA
+────────────────────────────────────────────────────────── */
+const projetsData = [
+  {
+    id:'ressources',category:'web',icon:'fas fa-graduation-cap',
+    tags:['Django','React.js','JWT','GitLab CI/CD','BDD','Agile'],
+    titre:{fr:'Plateforme Ressources Académiques',en:'Academic Resources Platform'},
+    desc:{
+      fr:`<ul><li><strong>Contexte :</strong> Projet universitaire UQAR.</li><li>Backend Django (Python), API sécurisée avec JWT.</li><li>Frontend React.js, gestion des accès et téléchargements.</li><li>Méthodologie Agile Scrum et pipeline CI/CD GitLab.</li><li>Tests BDD et tests unitaires.</li></ul>`,
+      en:`<ul><li><strong>Context:</strong> UQAR university project.</li><li>Django backend (Python), secure API with JWT.</li><li>React.js frontend, access management and downloads.</li><li>Agile Scrum methodology and GitLab CI/CD pipeline.</li><li>BDD and unit tests.</li></ul>`
     }
-
-    type();
-
-    /* =========================================================
-       =================== Projets data (modal) =================
-       ========================================================= */
-
-    const projets = [
-      {
-        titre: "Application web – Éthéria (Agence de voyage)",
-        icon: "fas fa-plane-departure",
-        desc: `
-          <ul>
-            <li><strong>Période :</strong> juin 2025 – août 2025 · <em>Associé à UQAR</em></li>
-            <li>Application complète de réservation de vols et de logements (comptes utilisateurs, paiements).</li>
-            <li><strong>Frontend :</strong> React, TypeScript, Redux Toolkit, Apollo Client, Tailwind CSS.</li>
-            <li><strong>Backend :</strong> Django (Python) + GraphQL (Graphene), auth JWT, base relationnelle.</li>
-            <li><strong>API tierces :</strong> DummyJSON (utilisateurs), TravelPayouts (vols &amp; hôtels).</li>
-            <li><strong>Paiements :</strong> Stripe (transactions simulées + factures).</li>
-            <li><strong>Déploiement :</strong> Frontend sur Vercel, Backend sur Render, Git/GitHub.</li>
-          </ul>
-        `
-      },
-      {
-        titre: "Plateforme E-commerce – ASP.NET Core & Microservices",
-        icon: "fas fa-shopping-cart",
-        desc: `
-          <ul>
-            <li><strong>Période :</strong> févr. 2025 – mai 2025 · <em>Associé à UQAR</em></li>
-            <li>MVP e-commerce évolué d’un monolithe MVC vers des microservices (Ocelot API Gateway).</li>
-            <li>Fonctionnalités : produits, utilisateurs, commandes, paniers, paiements Stripe.</li>
-            <li>Auth sécurisée via JWT, intégrations externes : FakeStore &amp; DummyJSON.</li>
-            <li>Persistance : Entity Framework Core + SQL Server.</li>
-          </ul>
-        `
-      },
-      {
-        titre: "Analyse des hachages MD5 & attaques par dictionnaire",
-        icon: "fas fa-lock",
-        desc: `
-          <ul>
-            <li><strong>Période :</strong> mars 2025 · <em>Associé à UQAR</em></li>
-            <li>Apps Python (Tkinter + hashlib) : générateur de dictionnaires personnalisés.</li>
-            <li>Vérificateur de hachages MD5 avec attaques par dictionnaire.</li>
-            <li>Mise en évidence de la vulnérabilité MD5 sans sel (dictionnaire, brute force).</li>
-            <li>Optimisations : threading, UTF-8, indicateurs visuels de progression.</li>
-            <li>UI ergonomiques (mode sombre, suivi en temps réel).</li>
-            <li>Recommandations : SHA-256, bcrypt.</li>
-          </ul>
-        `
-      },
-      {
-        titre: "Système d’authentification OTP (Python)",
-        icon: "fas fa-shield-halved",
-        desc: `
-          <ul>
-            <li><strong>Période :</strong> févr. 2025 · <em>Associé à UQAR</em></li>
-            <li>Solution client/serveur pour générer et valider des OTP.</li>
-            <li>Générateur basé sur une suite de Fibonacci modifiée + SHA-256.</li>
-            <li>Sécurité : expiration 60s, verrouillage après 5 échecs, anti brute-force.</li>
-            <li>Interfaces Tkinter pour génération/validation.</li>
-            <li>Bonnes pratiques : synchro horloges, gestion des clés, confidentialité.</li>
-          </ul>
-        `
-      },
-      {
-        titre: "Détection d’incidents & analyse réseau (Wireshark, DHCP Snooping)",
-        icon: "fas fa-network-wired",
-        desc: `
-          <ul>
-            <li><strong>Période :</strong> janv. 2025 · <em>Associé à UQAR</em></li>
-            <li>Analyse de captures pour identifier une infection RedLine Stealer.</li>
-            <li>Forensique : retraçage de l’infection, indicateurs de compromission.</li>
-            <li>Remédiation : isolement poste, reset accès, surveillance IDS/IPS.</li>
-            <li>Configuration DHCP Snooping pour contrer DHCP Spoofing.</li>
-          </ul>
-        `
-      },
-      {
-        titre: "Gestion des rendez-vous de réparation de véhicules (Web App)",
-        icon: "fas fa-tools",
-        desc: `
-          <ul>
-            <li><strong>Période :</strong> nov. 2024 – déc. 2024 · <em>Associé à UQAR</em></li>
-            <li>Stack : React.js/Redux (UI moderne) + Django REST Framework (API sécurisée).</li>
-            <li>Auth JWT, intégrations API (NHTSA, DummyJSON).</li>
-            <li>Admin personnalisé, documentation Swagger.</li>
-            <li>Page statistiques responsive, UX pour clients et mécaniciens.</li>
-          </ul>
-        `
-      },
-      {
-        titre: "Simulation mémoire virtuelle (swapping & protection) – MASM",
-        icon: "fas fa-microchip",
-        desc: `
-          <ul>
-            <li><strong>Période :</strong> nov. 2024 – déc. 2024 · <em>Associé à UQAR</em></li>
-            <li>Simulation RAM &amp; mémoire virtuelle avec swapping et contrôles d’accès.</li>
-            <li>Mécanismes OS : VirtualAlloc, chargement de programmes simulés (RO/RW).</li>
-            <li>Déplacement en VM si manque d’espace, affichage RAM/VM et statuts.</li>
-            <li>Vérification des permissions d’accès mémoire.</li>
-          </ul>
-        `
-      },
-      {
-        titre: "Système de gestion des consultations & prescriptions (WPF/C#)",
-        icon: "fas fa-notes-medical",
-        desc: `
-          <ul>
-            <li><strong>Période :</strong> nov. 2024 – déc. 2024 · <em>Associé à UQAR</em></li>
-            <li>App C# (WPF/XAML) suivant la Clean Architecture + SQL.</li>
-            <li>Gestion patients, consultations, prescriptions, historique &amp; traçabilité.</li>
-            <li>UML : use cases, classes, séquences. Pattern Repository.</li>
-            <li>Validations métier robustes, UI ergonomique.</li>
-            <li>Optimisation performances, migrations et évolutivité.</li>
-          </ul>
-        `
-      }
-    ];
-
-    /* =========================================================
-       =================== Logique Projets ======================
-       ========================================================= */
-
-    let currentProject = 0;
-
-    function showProject(i){
-      const p = projets[i];
-      document.getElementById("project-title").textContent = p.titre;
-      document.getElementById("project-icon").className = p.icon;
-      document.getElementById("modal-title").textContent = p.titre;
-      document.getElementById("modal-desc").innerHTML = p.desc;
+  },
+  {
+    id:'nordik',category:'web',icon:'fas fa-chart-bar',
+    tags:['Flask','Python','Chart.js','PDF','ERP/CRM','BI'],
+    titre:{fr:'PGI – Nordik Adventures (ERP/CRM/BI)',en:'ERP – Nordik Adventures (CRM/BI)'},
+    desc:{
+      fr:`<ul><li>Conception d'un PGI complet : CRM, réservations, facturation, finances, BI.</li><li>Backend Python (Flask) et automatisation des processus métier.</li><li>Dashboards interactifs avec Chart.js.</li><li>Génération automatisée de factures et rapports PDF.</li></ul>`,
+      en:`<ul><li>Full ERP design: CRM, reservations, billing, finance, BI.</li><li>Python (Flask) backend with business process automation.</li><li>Interactive dashboards with Chart.js.</li><li>Automated invoice and PDF report generation.</li></ul>`
     }
-
-    function prevProject(){
-      currentProject = (currentProject - 1 + projets.length) % projets.length;
-      showProject(currentProject);
+  },
+  {
+    id:'etheria',category:'web',icon:'fas fa-plane-departure',
+    tags:['React','TypeScript','Django','GraphQL','Kafka','Stripe','Vercel'],
+    titre:{fr:'Éthéria – Agence de voyage',en:'Éthéria – Travel Agency'},
+    desc:{
+      fr:`<ul><li><strong>Période :</strong> juin – août 2025 · UQAR</li><li>Application complète de réservation de vols et logements.</li><li>Frontend : React, TypeScript, Redux Toolkit, Apollo Client, Tailwind CSS.</li><li>Backend : Django + GraphQL (Graphene), JWT, Keycloak.</li><li>Paiements Stripe, déploiement Vercel/Render, messagerie Kafka.</li></ul>`,
+      en:`<ul><li><strong>Period:</strong> June – Aug 2025 · UQAR</li><li>Full flight and accommodation booking application.</li><li>Frontend: React, TypeScript, Redux Toolkit, Apollo Client, Tailwind CSS.</li><li>Backend: Django + GraphQL (Graphene), JWT, Keycloak.</li><li>Stripe payments, Vercel/Render deployment, Kafka messaging.</li></ul>`
     }
-
-    function nextProject(){
-      currentProject = (currentProject + 1) % projets.length;
-      showProject(currentProject);
+  },
+  {
+    id:'sochic',category:'web',icon:'fas fa-shopping-bag',
+    tags:['React','Django','Stripe','UX/UI','E-commerce'],
+    titre:{fr:'SoChicSisters – Site e-commerce',en:'SoChicSisters – E-commerce site'},
+    desc:{
+      fr:`<ul><li>Développement complet React & Django.</li><li>Gestion des produits, panier et paiements Stripe.</li><li>Design responsive et UX optimisée.</li><li>Administration des commandes et gestion des stocks.</li></ul>`,
+      en:`<ul><li>Full-stack React & Django development.</li><li>Product management, cart and Stripe payments.</li><li>Responsive design and optimized UX.</li><li>Order management and inventory tracking.</li></ul>`
     }
-
-    function openModal(){
-      document.getElementById("projectModal").classList.add("active");
+  },
+  {
+    id:'aspnet',category:'web',icon:'fas fa-shopping-cart',
+    tags:['ASP.NET Core','Microservices','Entity Framework','Stripe','SQL Server'],
+    titre:{fr:'E-commerce – ASP.NET Core & Microservices',en:'E-commerce – ASP.NET Core & Microservices'},
+    desc:{
+      fr:`<ul><li><strong>Période :</strong> févr. – mai 2025 · UQAR</li><li>MVP e-commerce évoluant d'un monolithe MVC vers des microservices (Ocelot API Gateway).</li><li>Auth JWT, intégrations FakeStore & DummyJSON.</li><li>Entity Framework Core + SQL Server.</li></ul>`,
+      en:`<ul><li><strong>Period:</strong> Feb – May 2025 · UQAR</li><li>E-commerce MVP evolving from MVC monolith to microservices (Ocelot API Gateway).</li><li>JWT auth, FakeStore & DummyJSON integrations.</li><li>Entity Framework Core + SQL Server.</li></ul>`
     }
-
-    function closeModal(){
-      document.getElementById("projectModal").classList.remove("active");
+  },
+  {
+    id:'garage',category:'web',icon:'fas fa-tools',
+    tags:['React','Redux','Django REST','JWT','Swagger','NHTSA'],
+    titre:{fr:'Gestion rendez-vous – Réparation véhicules',en:'Appointment Manager – Vehicle Repair'},
+    desc:{
+      fr:`<ul><li><strong>Période :</strong> nov. – déc. 2024 · UQAR</li><li>React.js/Redux + Django REST Framework sécurisé (JWT).</li><li>Intégration API NHTSA & DummyJSON, documentation Swagger.</li><li>Page statistiques responsive, UX pour clients & mécaniciens.</li></ul>`,
+      en:`<ul><li><strong>Period:</strong> Nov – Dec 2024 · UQAR</li><li>React.js/Redux + Django REST Framework (JWT secured).</li><li>NHTSA & DummyJSON API integration, Swagger docs.</li><li>Responsive stats page, UX for clients & mechanics.</li></ul>`
     }
+  },
+  {
+    id:'md5',category:'security',icon:'fas fa-lock',
+    tags:['Python','Tkinter','hashlib','MD5','Threading'],
+    titre:{fr:'Analyse MD5 & attaques par dictionnaire',en:'MD5 Analysis & Dictionary Attacks'},
+    desc:{
+      fr:`<ul><li><strong>Période :</strong> mars 2025 · UQAR</li><li>Apps Python (Tkinter + hashlib) : générateur de dictionnaires personnalisés.</li><li>Vérificateur de hachages MD5 avec attaques par dictionnaire.</li><li>Optimisations : threading, UTF-8, indicateurs visuels.</li><li>Recommandations SHA-256, bcrypt.</li></ul>`,
+      en:`<ul><li><strong>Period:</strong> March 2025 · UQAR</li><li>Python apps (Tkinter + hashlib): custom dictionary generator.</li><li>MD5 hash checker with dictionary attacks.</li><li>Optimizations: threading, UTF-8, visual indicators.</li><li>SHA-256, bcrypt recommendations.</li></ul>`
+    }
+  },
+  {
+    id:'otp',category:'security',icon:'fas fa-shield-halved',
+    tags:['Python','Fibonacci','SHA-256','Tkinter','OTP'],
+    titre:{fr:'Système d\'authentification OTP',en:'OTP Authentication System'},
+    desc:{
+      fr:`<ul><li><strong>Période :</strong> févr. 2025 · UQAR</li><li>Solution client/serveur pour générer et valider des OTP.</li><li>Générateur basé sur suite de Fibonacci modifiée + SHA-256.</li><li>Expiration 60s, verrouillage après 5 échecs, anti brute-force.</li></ul>`,
+      en:`<ul><li><strong>Period:</strong> Feb 2025 · UQAR</li><li>Client/server solution for OTP generation and validation.</li><li>Generator based on modified Fibonacci sequence + SHA-256.</li><li>60s expiry, lock after 5 failures, brute-force protection.</li></ul>`
+    }
+  },
+  {
+    id:'network',category:'security',icon:'fas fa-network-wired',
+    tags:['Wireshark','DHCP Snooping','IDS/IPS','Forensics'],
+    titre:{fr:'Détection d\'incidents & analyse réseau',en:'Incident Detection & Network Analysis'},
+    desc:{
+      fr:`<ul><li><strong>Période :</strong> janv. 2025 · UQAR</li><li>Analyse de captures pour identifier une infection RedLine Stealer.</li><li>Forensique : retraçage infection, indicateurs de compromission.</li><li>Configuration DHCP Snooping contre DHCP Spoofing.</li></ul>`,
+      en:`<ul><li><strong>Period:</strong> Jan 2025 · UQAR</li><li>Capture analysis to identify a RedLine Stealer infection.</li><li>Forensics: infection tracing, indicators of compromise.</li><li>DHCP Snooping configuration against DHCP Spoofing.</li></ul>`
+    }
+  },
+  {
+    id:'masm',category:'desktop',icon:'fas fa-microchip',
+    tags:['MASM','Assembly','VirtualAlloc','OS','Memory'],
+    titre:{fr:'Simulation mémoire virtuelle (MASM)',en:'Virtual Memory Simulation (MASM)'},
+    desc:{
+      fr:`<ul><li><strong>Période :</strong> nov. – déc. 2024 · UQAR</li><li>Simulation RAM & mémoire virtuelle avec swapping et contrôles d'accès.</li><li>VirtualAlloc, chargement de programmes simulés (RO/RW).</li><li>Vérification des permissions d'accès mémoire.</li></ul>`,
+      en:`<ul><li><strong>Period:</strong> Nov – Dec 2024 · UQAR</li><li>RAM & virtual memory simulation with swapping and access controls.</li><li>VirtualAlloc, simulated program loading (RO/RW).</li><li>Memory access permission verification.</li></ul>`
+    }
+  },
+  {
+    id:'wpf',category:'desktop',icon:'fas fa-notes-medical',
+    tags:['C#','WPF/XAML','Clean Architecture','SQL','UML'],
+    titre:{fr:'Gestion consultations & prescriptions (WPF)',en:'Consultation & Prescription Manager (WPF)'},
+    desc:{
+      fr:`<ul><li><strong>Période :</strong> nov. – déc. 2024 · UQAR</li><li>App C# (WPF/XAML) suivant la Clean Architecture + SQL.</li><li>Gestion patients, consultations, prescriptions, historique.</li><li>UML : use cases, classes, séquences. Pattern Repository.</li></ul>`,
+      en:`<ul><li><strong>Period:</strong> Nov – Dec 2024 · UQAR</li><li>C# app (WPF/XAML) following Clean Architecture + SQL.</li><li>Patient, consultation, prescription, history management.</li><li>UML: use cases, classes, sequences. Repository pattern.</li></ul>`
+    }
+  }
+];
 
-    document.getElementById('projectModal').addEventListener('click',(e)=>{
-      if(e.target.id==='projectModal') closeModal();
+/* ──────────────────────────────────────────────────────────
+   CAROUSEL
+────────────────────────────────────────────────────────── */
+let currentFilter = 'all';
+let carouselIndex = 0;
+let visibleCount = 3;
+let filteredProjects = [];
+
+function getVisibleCount(){
+  if(window.innerWidth <= 600) return 1;
+  if(window.innerWidth <= 900) return 2;
+  return 3;
+}
+
+function updateFilterBtns(){
+  document.querySelectorAll('.filter-btn').forEach(btn=>{
+    const f = btn.dataset.filter;
+    const label = t('proj.filter.'+f);
+    if(label) btn.textContent = label;
+  });
+}
+
+function renderProjects(){
+  visibleCount = getVisibleCount();
+  filteredProjects = currentFilter === 'all'
+    ? projetsData
+    : projetsData.filter(p => p.category === currentFilter);
+
+  const track = document.getElementById('projects-track');
+  track.innerHTML = '';
+  filteredProjects.forEach((p,i)=>{
+    const card = document.createElement('div');
+    card.className = 'project-card';
+    card.innerHTML = `
+      <div class="project-card-icon"><i class="${p.icon}"></i></div>
+      <h3>${p.titre[currentLang]}</h3>
+      <div class="project-card-tags">${p.tags.map(t=>`<span class="project-card-tag">${t}</span>`).join('')}</div>
+      <button class="project-card-btn" onclick="openProjectModal(${i})">${currentLang==='fr'?'Voir détails':'View details'}</button>
+    `;
+    track.appendChild(card);
+  });
+
+  const maxIndex = Math.max(0, filteredProjects.length - visibleCount);
+  if(carouselIndex > maxIndex) carouselIndex = maxIndex;
+  updateCarouselPosition();
+  renderDots();
+}
+
+function updateCarouselPosition(){
+  const track = document.getElementById('projects-track');
+  const cards = track.querySelectorAll('.project-card');
+  if(!cards.length) return;
+  const cardW = cards[0].offsetWidth + 24;
+  track.style.transform = `translateX(-${carouselIndex * cardW}px)`;
+  renderDots();
+}
+
+function renderDots(){
+  const dotsEl = document.getElementById('carousel-dots');
+  const max = Math.max(1, filteredProjects.length - visibleCount + 1);
+  dotsEl.innerHTML = '';
+  for(let i=0;i<max;i++){
+    const dot = document.createElement('div');
+    dot.className = 'carousel-dot' + (i===carouselIndex?' active':'');
+    dot.onclick = () => { carouselIndex = i; updateCarouselPosition(); };
+    dotsEl.appendChild(dot);
+  }
+}
+
+function carouselNext(){
+  const max = Math.max(0, filteredProjects.length - visibleCount);
+  carouselIndex = Math.min(carouselIndex + 1, max);
+  updateCarouselPosition();
+}
+
+function carouselPrev(){
+  carouselIndex = Math.max(0, carouselIndex - 1);
+  updateCarouselPosition();
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    carouselIndex = 0;
+    renderProjects();
+  });
+});
+
+window.addEventListener('resize', renderProjects);
+
+function openProjectModal(i){
+  const p = filteredProjects[i];
+  document.getElementById('modal-icon-el').innerHTML = `<i class="${p.icon}"></i>`;
+  document.getElementById('modal-title').textContent = p.titre[currentLang];
+  document.getElementById('modal-tags').innerHTML = p.tags.map(t=>`<span class="tag">${t}</span>`).join('');
+  document.getElementById('modal-desc').innerHTML = p.desc[currentLang];
+  document.getElementById('projectModal').classList.add('active');
+}
+
+function closeModal(){ document.getElementById('projectModal').classList.remove('active'); }
+document.getElementById('projectModal').addEventListener('click',e=>{ if(e.target.id==='projectModal') closeModal(); });
+
+/* ──────────────────────────────────────────────────────────
+   TYPING EFFECT
+────────────────────────────────────────────────────────── */
+const typedTextsFr = ['Finissante en Informatique','Développeuse Full-Stack','Passionnée de DevOps & IA','Exploratrice de la Cybersécurité','Disponible dès mai 2026'];
+const typedTextsEn = ['CS Graduate Student','Full-Stack Developer','DevOps & AI Enthusiast','Cybersecurity Explorer','Available from May 2026'];
+let typedArr = typedTextsFr;
+let tyIdx=0, tyChar=0, tyDeleting=false;
+
+function updateTypedArray(){ typedArr = currentLang==='fr'?typedTextsFr:typedTextsEn; tyIdx=0; tyChar=0; tyDeleting=false; }
+
+function typeEffect(){
+  const cur = typedArr[tyIdx];
+  const el = document.getElementById('typed-text');
+  if(!el){setTimeout(typeEffect,100);return;}
+  el.innerHTML = cur.substring(0,tyChar)+'<span style="opacity:.7">|</span>';
+  if(!tyDeleting && tyChar<cur.length){ tyChar++; }
+  else if(tyDeleting && tyChar>0){ tyChar--; }
+  else if(!tyDeleting && tyChar===cur.length){ tyDeleting=true; setTimeout(typeEffect,1400); return; }
+  else if(tyDeleting && tyChar===0){ tyDeleting=false; tyIdx=(tyIdx+1)%typedArr.length; }
+  setTimeout(typeEffect, tyDeleting?45:110);
+}
+typeEffect();
+
+/* ──────────────────────────────────────────────────────────
+   PARTICLES
+────────────────────────────────────────────────────────── */
+(function(){
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let W,H,pts=[];
+  function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
+  resize(); window.addEventListener('resize',resize);
+  for(let i=0;i<90;i++){
+    pts.push({x:Math.random()*2000,y:Math.random()*900,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*2+.5,a:Math.random()});
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0) p.x=W; if(p.x>W) p.x=0;
+      if(p.y<0) p.y=H; if(p.y>H) p.y=0;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(0,229,255,${p.a*0.5})`; ctx.fill();
     });
-
-    // Init
-    showProject(currentProject);
-
-    /* =========================================================
-       =============== Effet 3D tilt (Compétences) =============
-       ========================================================= */
-
-    const tiltCards = document.querySelectorAll('[data-tilt]');
-    const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
-
-    tiltCards.forEach(card=>{
-      const glow = card.querySelector('.skill-glow');
-
-      card.addEventListener('mousemove',(e)=>{
-        const r  = card.getBoundingClientRect();
-        const cx = r.left + r.width/2;
-        const cy = r.top + r.height/2;
-
-        const dx = e.clientX - cx;
-        const dy = e.clientY - cy;
-
-        const rx = clamp((-dy / r.height) * 12, -12, 12); // rotateX
-        const ry = clamp(( dx / r.width ) * 12, -12, 12); // rotateY
-
-        card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
-
-        const mx = ((e.clientX - r.left) / r.width) * 100;
-        const my = ((e.clientY - r.top)  / r.height) * 100;
-
-        glow && (glow.style.setProperty('--mx', mx+'%'),
-                 glow.style.setProperty('--my', my+'%'));
-      });
-
-      card.addEventListener('mouseleave',()=>{
-        card.style.transform = 'rotateX(0deg) rotateY(0deg)';
-      });
-    });
-
-    /* =========================================================
-       =============== Effet 3D tilt (Langues) =================
-       ========================================================= */
-
-    const tiltLangs = document.querySelectorAll('[data-tilt-lang]');
-
-    tiltLangs.forEach(card=>{
-      const glow = card.querySelector('.lang-glow');
-
-      card.addEventListener('mousemove',(e)=>{
-        const r  = card.getBoundingClientRect();
-        const cx = r.left + r.width/2;
-        const cy = r.top + r.height/2;
-
-        const dx = e.clientX - cx;
-        const dy = e.clientY - cy;
-
-        const rx = clamp((-dy / r.height) * 10, -10, 10);
-        const ry = clamp(( dx / r.width ) * 10, -10, 10);
-
-        card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
-
-        const mx = ((e.clientX - r.left) / r.width) * 100;
-        const my = ((e.clientY - r.top)  / r.height) * 100;
-
-        glow && (glow.style.setProperty('--mx', mx+'%'),
-                 glow.style.setProperty('--my', my+'%'));
-      });
-
-      card.addEventListener('mouseleave',()=>{
-        card.style.transform = 'rotateX(0deg) rotateY(0deg)';
-      });
-    });
-
-    /* =========================================================
-       ================== Reveal on scroll ======================
-       ========================================================= */
-
-    const revealers = document.querySelectorAll('.reveal');
-
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-          io.unobserve(entry.target);
-        }
-      });
-    },{ threshold: 0.18 });
-
-    revealerLoop:
-    for(const el of revealerIterator(revealers)){
-      io.observe(el);
-    }
-
-    function* revealerIterator(list){
-      for(let i=0;i<list.length;i++){
-        yield list[i];
+    pts.forEach((a,i)=>{
+      for(let j=i+1;j<pts.length;j++){
+        const b=pts[j], d=Math.hypot(a.x-b.x,a.y-b.y);
+        if(d<100){ ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+          ctx.strokeStyle=`rgba(0,229,255,${(1-d/100)*.12})`; ctx.stroke(); }
       }
-    }
-  </script>
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ──────────────────────────────────────────────────────────
+   SCROLL PROGRESS
+────────────────────────────────────────────────────────── */
+window.addEventListener('scroll',()=>{
+  const s = document.documentElement;
+  const pct = (s.scrollTop/(s.scrollHeight-s.clientHeight))*100;
+  document.getElementById('scroll-progress').style.width = pct+'%';
+  updateActiveNav();
+});
+
+/* ──────────────────────────────────────────────────────────
+   ACTIVE NAV
+────────────────────────────────────────────────────────── */
+function updateActiveNav(){
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('#main-nav a');
+  let current = '';
+  sections.forEach(s=>{ if(window.scrollY >= s.offsetTop-200) current=s.id; });
+  navLinks.forEach(a=>{ a.classList.toggle('active', a.getAttribute('href')==='#'+current); });
+}
+
+/* ──────────────────────────────────────────────────────────
+   STATS COUNTER
+────────────────────────────────────────────────────────── */
+function animateCounters(){
+  document.querySelectorAll('.stat-number').forEach(el=>{
+    const target = parseInt(el.dataset.target);
+    let cur = 0;
+    const step = Math.ceil(target/40);
+    const interval = setInterval(()=>{
+      cur = Math.min(cur+step, target);
+      el.textContent = cur;
+      if(cur>=target) clearInterval(interval);
+    },40);
+  });
+}
+let statsAnimated = false;
+const statsObserver = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting && !statsAnimated){ statsAnimated=true; animateCounters(); }});
+},{threshold:.3});
+document.querySelectorAll('#stats').forEach(el=>statsObserver.observe(el));
+
+/* ──────────────────────────────────────────────────────────
+   REVEAL ON SCROLL
+────────────────────────────────────────────────────────── */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ──────────────────────────────────────────────────────────
+   3D TILT
+────────────────────────────────────────────────────────── */
+function setupTilt(selector, maxAngle, glowClass){
+  document.querySelectorAll(selector).forEach(card=>{
+    const glow = card.querySelector(glowClass);
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      const dx=e.clientX-(r.left+r.width/2), dy=e.clientY-(r.top+r.height/2);
+      const rx=Math.max(-maxAngle,Math.min(maxAngle,(-dy/r.height)*maxAngle));
+      const ry=Math.max(-maxAngle,Math.min(maxAngle,(dx/r.width)*maxAngle));
+      card.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
+      if(glow){
+        glow.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
+        glow.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
+      }
+    });
+    card.addEventListener('mouseleave',()=>{ card.style.transform='rotateX(0) rotateY(0)'; });
+  });
+}
+setupTilt('[data-tilt]',12,'.skill-glow');
+setupTilt('[data-tilt-lang]',10,'.lang-glow');
+
+/* ──────────────────────────────────────────────────────────
+   CUSTOM CURSOR
+────────────────────────────────────────────────────────── */
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY;
+  dot.style.left=mx+'px'; dot.style.top=my+'px'; });
+(function animRing(){
+  rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+})();
+
+/* ──────────────────────────────────────────────────────────
+   INIT
+────────────────────────────────────────────────────────── */
+renderProjects();
+applyLang();
+// Re-init tilt after render (new cards added dynamically)
+setTimeout(()=>{
+  setupTilt('[data-tilt]',12,'.skill-glow');
+  setupTilt('[data-tilt-lang]',10,'.lang-glow');
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+},100);
+</script>
 </body>
 </html>
-
-
